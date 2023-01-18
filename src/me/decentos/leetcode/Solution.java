@@ -1,5 +1,7 @@
 package me.decentos.leetcode;
 
+import me.decentos.leetcode.sorting.based.InsertionSort;
+
 class Solution {
     public static void main(String[] args) {
 //        RomanToInt.romanToInt("MCDLXXXVIII");
@@ -84,5 +86,8 @@ class Solution {
 //        E1572MatrixDiagonalSum.diagonalSum(new int[][]{{1,2,3}, {4,5,6}, {7,8,9}});
 //        E67AddBinary.addBinary("11", "1");
 //        M209MinimumSubarray.minSubArrayLen(105, new int[]{100,1,1,1,1,1,5,1,100});
+//        SelectionSort.selectionSort(new int[]{7, 3, 2, 5, 6, 10, 9, 8, 1});
+//        BubbleSort.bubbleSortReverse(new int[]{7, 3, 2, 5, 6, 10, 9, 8, 1});
+        InsertionSort.insertionSort(new int[]{7, 3, 2, 5, 6, 10, 9, 8, 1});
     }
 }

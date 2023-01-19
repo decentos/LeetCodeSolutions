@@ -1,5 +1,8 @@
 package me.decentos.leetcode;
 
+import me.decentos.leetcode.sorting.M147InsertionSortList;
+import me.decentos.leetcode.util.ListNode;
+
 public class NodeSolution {
     public static void main(String[] args) {
 //        ListNode headA = ListNode.createList(4, 1);
@@ -32,5 +35,7 @@ public class NodeSolution {
 //        System.out.println();
 //        ListNode head = ListNode.createList(1,2);
 //        ListNode result = M61RotateList.rotateRight(head, 2);
+        ListNode head = ListNode.createList(4,2,1,3);
+        M147InsertionSortList.insertionSortList(head);
     }
 }

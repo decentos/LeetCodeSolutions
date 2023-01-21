@@ -1,4 +1,4 @@
-package me.decentos.leetcode.sorting.based;
+package me.decentos.sorting;
 
 public class BubbleSort {
 

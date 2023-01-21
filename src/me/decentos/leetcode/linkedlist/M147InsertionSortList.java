@@ -1,4 +1,4 @@
-package me.decentos.leetcode.sorting;
+package me.decentos.leetcode.linkedlist;
 
 import me.decentos.leetcode.util.ListNode;
 

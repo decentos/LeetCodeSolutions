@@ -1,4 +1,4 @@
-package me.decentos.leetcode.sorting;
+package me.decentos.leetcode.easy;
 
 import java.util.Arrays;
 

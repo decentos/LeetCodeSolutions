@@ -1,6 +1,6 @@
 package me.decentos.leetcode;
 
-import me.decentos.leetcode.sorting.M147InsertionSortList;
+import me.decentos.leetcode.linkedlist.M147InsertionSortList;
 import me.decentos.leetcode.util.ListNode;
 
 public class NodeSolution {

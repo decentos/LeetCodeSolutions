@@ -3,7 +3,7 @@ package me.decentos.sorting;
 public class CountingSort {
 
     // range from 0 to 100
-    public static int[] countingSort(int[] arr) {
+    public static void countingSort(int[] arr) {
         int[] sorted = new int[arr.length];
         int[] count = new int[101];
         for (int i : arr) {
@@ -20,11 +20,11 @@ public class CountingSort {
         for (int i : arr) {
             sorted[count[i]++] = i;
         }
-        return sorted;
+        System.arraycopy(sorted, 0, arr, 0, arr.length);
     }
 
     // range from -100 to 100
-    public static int[] countingSortShift(int[] arr) {
+    public static void countingSortShift(int[] arr) {
         int[] sorted = new int[arr.length];
         int[] count = new int[201];
         int shift = 100;
@@ -42,6 +42,6 @@ public class CountingSort {
         for (int i : arr) {
             sorted[count[i + shift]++] = i;
         }
-        return sorted;
+        System.arraycopy(sorted, 0, arr, 0, arr.length);
     }
 }

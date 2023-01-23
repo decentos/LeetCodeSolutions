@@ -1,5 +1,7 @@
 package me.decentos.leetcode;
 
+import me.decentos.leetcode.medium.M2343KthSmallestTrimmed;
+
 class Solution {
     public static void main(String[] args) {
 //        RomanToInt.romanToInt("MCDLXXXVIII");
@@ -94,5 +96,8 @@ class Solution {
 //        CountingSort.countingSortShift(new int[]{-7, 3, -2, 5, 6, 10, 9, 8, 1});
 //        E1200MinDifference e1200 = new E1200MinDifference();
 //        e1200.minimumAbsDifference2(new int[]{4,2,1,3});
+//        RadixSort.lsdRadixSort(new int[]{6, 12, 324, 11, 222, 98, 115, 4});
+        M2343KthSmallestTrimmed m2343 = new M2343KthSmallestTrimmed();
+        m2343.smallestTrimmedNumbers(new String[]{"111","111","111"}, new int[][]{{1,1},{2,2},{3,3}});
     }
 }

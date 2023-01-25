@@ -1,5 +1,7 @@
 package me.decentos.leetcode;
 
+import me.decentos.leetcode.medium.M347TopFrequentElements;
+
 class Solution {
     public static void main(String[] args) {
 //        RomanToInt.romanToInt("MCDLXXXVIII");
@@ -97,6 +99,8 @@ class Solution {
 //        RadixSort.lsdRadixSort(new int[]{6, 12, 324, 11, 222, 98, 115, 4});
 //        M2343KthSmallestTrimmed m2343 = new M2343KthSmallestTrimmed();
 //        m2343.smallestTrimmedNumbers(new String[]{"111","111","111"}, new int[][]{{1,1},{2,2},{3,3}});
-
+//        BucketSort.bucketSort(new int[]{23,25,21,12,19,17,5,7}, 5);
+        M347TopFrequentElements m347 = new M347TopFrequentElements();
+        m347.topKFrequent(new int[]{4,1,-1,2,-1,2,3}, 2);
     }
 }

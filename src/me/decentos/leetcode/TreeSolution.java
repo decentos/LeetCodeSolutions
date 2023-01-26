@@ -1,5 +1,8 @@
 package me.decentos.leetcode;
 
+import me.decentos.leetcode.tree.M109ConvertListToTree;
+import me.decentos.leetcode.util.ListNode;
+
 public class TreeSolution {
     public static void main(String[] args) {
 //        TreeNode treeNode2 = TreeNode.newTree(3,5,1,6,7,4,2,null,null,null,null,null,null,9,8);
@@ -15,5 +18,8 @@ public class TreeSolution {
 //        System.out.println(LowestCommonAncestor.lowestCommonAncestor(treeNode, new TreeNode(2), new TreeNode(4)));
 //        System.out.println(ValidateBinaryTree.isValidBST(treeNode));
 //        System.out.println(TreeOrderTraversal.levelOrder(treeNode));
+        ListNode head = ListNode.createList(-10,-3,0,5,9);
+        M109ConvertListToTree m109 = new M109ConvertListToTree();
+        m109.sortedListToBST2(head);
     }
 }

@@ -2,12 +2,12 @@ package me.decentos.sorting;
 
 public class QuickSelect {
 
-    public int findKthLargest(int[] nums, int k) {
+    public static int findKthLargest(int[] nums, int k) {
         int n = nums.length;
         return quickSelect(nums, 0, n - 1, n - k);
     }
 
-    private int quickSelect(int[] nums, int left, int right, int kth) {
+    private static int quickSelect(int[] nums, int left, int right, int kth) {
         if (left == right) return nums[left];
 
         int pivotIndex = partition(nums, left, right, left);
@@ -17,7 +17,7 @@ public class QuickSelect {
         else return quickSelect(nums, left, pivotIndex - 1, kth);
     }
 
-    private int partition(int[] nums, int left, int right, int pivotIndex) {
+    private static int partition(int[] nums, int left, int right, int pivotIndex) {
         int pivot = nums[pivotIndex];
         swap(nums, pivotIndex, right);
 
@@ -32,7 +32,7 @@ public class QuickSelect {
         return insertIndex;
     }
 
-    private void swap(int[] nums, int i, int j) {
+    private static void swap(int[] nums, int i, int j) {
         int temp = nums[i];
         nums[i] = nums[j];
         nums[j] = temp;

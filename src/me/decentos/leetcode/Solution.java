@@ -1,7 +1,5 @@
 package me.decentos.leetcode;
 
-import me.decentos.leetcode.medium.M347TopFrequentElements;
-
 class Solution {
     public static void main(String[] args) {
 //        RomanToInt.romanToInt("MCDLXXXVIII");
@@ -86,21 +84,14 @@ class Solution {
 //        E1572MatrixDiagonalSum.diagonalSum(new int[][]{{1,2,3}, {4,5,6}, {7,8,9}});
 //        E67AddBinary.addBinary("11", "1");
 //        M209MinimumSubarray.minSubArrayLen(105, new int[]{100,1,1,1,1,1,5,1,100});
-//        SelectionSort.selectionSort(new int[]{7, 3, 2, 5, 6, 10, 9, 8, 1});
-//        BubbleSort.bubbleSortReverse(new int[]{7, 3, 2, 5, 6, 10, 9, 8, 1});
-//        InsertionSort.insertionSort(new int[]{7, 3, 2, 5, 6, 10, 9, 8, 1});
-//        HeapSort.heapSort(new int[]{7, 3, 2, 5, 6, 10, 9, 8, 1});
 //        M215KLargestElement.findKthLargest(new int[]{7, 3, 2, 5, 6, 10, 9, 8, 1, 4, 0}, 2);
 //        M39CombinationSum m39 = new M39CombinationSum();
 //        m39.combinationSum(new int[]{2,3,6,7}, 7);
-//        CountingSort.countingSortShift(new int[]{-7, 3, -2, 5, 6, 10, 9, 8, 1});
 //        E1200MinDifference e1200 = new E1200MinDifference();
 //        e1200.minimumAbsDifference2(new int[]{4,2,1,3});
-//        RadixSort.lsdRadixSort(new int[]{6, 12, 324, 11, 222, 98, 115, 4});
 //        M2343KthSmallestTrimmed m2343 = new M2343KthSmallestTrimmed();
 //        m2343.smallestTrimmedNumbers(new String[]{"111","111","111"}, new int[][]{{1,1},{2,2},{3,3}});
-//        BucketSort.bucketSort(new int[]{23,25,21,12,19,17,5,7}, 5);
-        M347TopFrequentElements m347 = new M347TopFrequentElements();
-        m347.topKFrequent(new int[]{4,1,-1,2,-1,2,3}, 2);
+//        M347TopFrequentElements m347 = new M347TopFrequentElements();
+//        m347.topKFrequent2(new int[]{4,1,-1,2,-1,2,3}, 2);
     }
 }

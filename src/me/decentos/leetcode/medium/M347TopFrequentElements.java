@@ -47,11 +47,11 @@ public class M347TopFrequentElements {
         int[] answer = new int[k];
         for (int i = buckets.length - 1; i >= 0; i--) {
             List<Integer> bucket = buckets[i];
-            if (bucket != null) {
-                for (int element : bucket) {
-                    answer[idx++] = element;
-                    if (idx == k) return answer;
-                }
+            if (bucket == null) continue;
+
+            for (int element : bucket) {
+                answer[idx++] = element;
+                if (idx == k) return answer;
             }
         }
         return answer;

@@ -1,5 +1,7 @@
 package me.decentos.leetcode;
 
+import me.decentos.leetcode.medium.M253MeetingRooms2;
+
 class Solution {
     public static void main(String[] args) {
 //        RomanToInt.romanToInt("MCDLXXXVIII");
@@ -95,5 +97,8 @@ class Solution {
 //        m347.topKFrequent2(new int[]{4,1,-1,2,-1,2,3}, 2);
 //        M3LongestSubstring m3 = new M3LongestSubstring();
 //        m3.lengthOfLongestSubstring("pwwkew");
+        M253MeetingRooms2 m253 = new M253MeetingRooms2();
+//        m253.minMeetingRooms(new int[][]{{0,30}, {5,10}, {15,20}});
+        m253.minMeetingRooms(new int[][]{{7,10}, {2,4}});
     }
 }

@@ -10,14 +10,12 @@ public class M253MeetingRooms2 {
     public int minMeetingRooms(int[][] intervals) {
         Arrays.sort(intervals, Comparator.comparingInt(a -> a[0]));
         Queue<Integer> heap = new PriorityQueue<>();
-        int maxRooms = 0;
         for (int[] interval : intervals) {
-            while (!heap.isEmpty() && interval[0] >= heap.peek()) {
+            if (!heap.isEmpty() && interval[0] >= heap.peek()) {
                 heap.poll();
             }
             heap.offer(interval[1]);
-            maxRooms = Math.max(maxRooms, heap.size());
         }
-        return maxRooms;
+        return heap.size();
     }
 }

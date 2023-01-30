@@ -1,6 +1,6 @@
 package me.decentos.leetcode;
 
-import me.decentos.leetcode.medium.M253MeetingRooms2;
+import me.decentos.leetcode.medium.M48RotateImage;
 
 class Solution {
     public static void main(String[] args) {
@@ -97,8 +97,12 @@ class Solution {
 //        m347.topKFrequent2(new int[]{4,1,-1,2,-1,2,3}, 2);
 //        M3LongestSubstring m3 = new M3LongestSubstring();
 //        m3.lengthOfLongestSubstring("pwwkew");
-        M253MeetingRooms2 m253 = new M253MeetingRooms2();
+//        M253MeetingRooms2 m253 = new M253MeetingRooms2();
 //        m253.minMeetingRooms(new int[][]{{0,30}, {5,10}, {15,20}});
-        m253.minMeetingRooms(new int[][]{{7,10}, {2,4}});
+//        m253.minMeetingRooms(new int[][]{{7,10}, {2,4}});
+        M48RotateImage m48 = new M48RotateImage();
+//        m48.rotate(new int[][]{{1,2,3}, {4,5,6}, {7,8,9}});
+        m48.rotate(new int[][]{{5,1,9,11}, {2,4,8,10}, {13,3,6,7}, {15,14,12,16}});
+
     }
 }

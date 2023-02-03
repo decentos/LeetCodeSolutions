@@ -1,7 +1,5 @@
 package me.decentos.leetcode;
 
-import me.decentos.leetcode.hard.H220ContainsDuplicate3;
-
 class Solution {
     public static void main(String[] args) {
 //        RomanToInt.romanToInt("MCDLXXXVIII");
@@ -105,7 +103,7 @@ class Solution {
 //        m48.rotate(new int[][]{{5,1,9,11}, {2,4,8,10}, {13,3,6,7}, {15,14,12,16}});
 //        E219ContainsDuplicate2 e219 = new E219ContainsDuplicate2();
 //        e219.containsNearbyDuplicate(new int[]{1,2,3,1,2,3}, 2);
-        H220ContainsDuplicate3 h220 = new H220ContainsDuplicate3();
-        h220.containsNearbyAlmostDuplicate2(new int[]{1,5,9,1,5,9}, 2, 3);
+//        H220ContainsDuplicate3 h220 = new H220ContainsDuplicate3();
+//        h220.containsNearbyAlmostDuplicate2(new int[]{1,5,9,1,5,9}, 2, 3);
     }
 }

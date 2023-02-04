@@ -8,21 +8,30 @@ import java.util.Map;
 
 public class M49GroupAnagrams {
 
-    public static List<List<String>> groupAnagrams(String[] strs) {
+    public List<List<String>> groupAnagrams(String[] strs) {
         Map<String, List<String>> map = new HashMap<>();
         for (String word : strs) {
             char[] wordArr = word.toCharArray();
             Arrays.sort(wordArr);
             String sortWord = new String(wordArr);
+            map.computeIfAbsent(sortWord, val -> new ArrayList<>()).add(word);
+        }
+        return new ArrayList<>(map.values());
+    }
 
-            List<String> list = map.get(sortWord);
-            if (list == null) {
-                map.put(sortWord, List.of(word));
-            } else {
-                List<String> arraylist = new ArrayList<>(list);
-                arraylist.add(word);
-                map.put(sortWord, arraylist);
+    public List<List<String>> groupAnagrams2(String[] strs) {
+        Map<String, List<String>> map = new HashMap<>();
+        int[] count = new int[26];
+        for (String word : strs) {
+            Arrays.fill(count, 0);
+            for (char c : word.toCharArray()) count[c - 'a']++;
+
+            StringBuilder sb = new StringBuilder();
+            for (int j : count) {
+                sb.append('#');
+                sb.append(j);
             }
+            map.computeIfAbsent(sb.toString(), val -> new ArrayList<>()).add(word);
         }
         return new ArrayList<>(map.values());
     }

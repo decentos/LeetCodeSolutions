@@ -1,4 +1,4 @@
-package easy;
+package matrix;
 
 import java.util.Arrays;
 import java.util.Comparator;

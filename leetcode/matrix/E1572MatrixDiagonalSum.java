@@ -1,4 +1,4 @@
-package easy;
+package matrix;
 
 public class E1572MatrixDiagonalSum {
 

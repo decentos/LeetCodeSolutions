@@ -1,4 +1,4 @@
-package medium;
+package matrix;
 
 public class M48RotateImage {
 

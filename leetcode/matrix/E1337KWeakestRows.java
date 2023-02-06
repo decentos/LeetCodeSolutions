@@ -1,4 +1,4 @@
-package easy;
+package matrix;
 
 import java.util.HashMap;
 import java.util.Map;

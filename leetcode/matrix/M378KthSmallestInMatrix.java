@@ -1,4 +1,4 @@
-package medium;
+package matrix;
 
 import java.util.Comparator;
 import java.util.PriorityQueue;

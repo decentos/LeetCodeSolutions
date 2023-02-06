@@ -36,4 +36,28 @@ public class M103TreeZigzagTraversal {
         }
         return result;
     }
+
+    public List<List<Integer>> zigzagLevelOrder2(TreeNode root) {
+        if (root == null) return Collections.emptyList();
+
+        List<List<Integer>> result = new ArrayList<>();
+        dfs(root, result, 0);
+        return result;
+    }
+
+    private void dfs(TreeNode node, List<List<Integer>> result, int level) {
+        if (node == null) return;
+
+        if (result.size() <= level) {
+            List<Integer> currLevel = new LinkedList<>();
+            result.add(currLevel);
+        }
+
+        List<Integer> currLevel = result.get(level);
+        if (level % 2 == 0) currLevel.add(node.val);
+        else currLevel.add(0, node.val);
+
+        dfs(node.left, result, level + 1);
+        dfs(node.right, result, level + 1);
+    }
 }

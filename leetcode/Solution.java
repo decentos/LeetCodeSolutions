@@ -1,5 +1,3 @@
-import medium.M288UniqueWordAbbreviation;
-
 class Solution {
     public static void main(String[] args) {
 //        RomanToInt.romanToInt("MCDLXXXVIII");
@@ -107,7 +105,8 @@ class Solution {
 //        h220.containsNearbyAlmostDuplicate2(new int[]{1,5,9,1,5,9}, 2, 3);
 //        M249GroupShiftedStrings m249 = new M249GroupShiftedStrings();
 //        m249.groupStrings(new String[]{"abc","bcd","acef","xyz","az","ba","a","z"});
-        M288UniqueWordAbbreviation m288 = new M288UniqueWordAbbreviation(new String[]{"door","naive"});
-        m288.isUnique("cat");
+//        M288UniqueWordAbbreviation m288 = new M288UniqueWordAbbreviation(new String[]{"door","naive"});
+//        m288.isUnique("cat");
+        System.out.println(Math.log(16) / Math.log(2));
     }
 }

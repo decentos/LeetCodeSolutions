@@ -39,6 +39,7 @@ public class M462MinimumMovesEqual2 {
         int l = 0, r = nums.length - 1, sum = 0;
         Arrays.sort(nums);
         while (l < r) {
+            if (nums[r] == nums[l]) break;
             sum += nums[r] - nums[l];
             l++;
             r--;

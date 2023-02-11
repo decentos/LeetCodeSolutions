@@ -1,13 +1,12 @@
 package medium;
 
-import java.util.Comparator;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
 public class M215KLargestElement {
 
     public int findKthLargestQueue(int[] nums, int k) {
-        Queue<Integer> heap = new PriorityQueue<>(Comparator.comparingInt(n -> n));
+        Queue<Integer> heap = new PriorityQueue<>();
         for (int i : nums) {
             heap.offer(i);
             if (heap.size() > k) heap.poll();

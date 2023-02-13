@@ -1,25 +1,26 @@
 package medium;
 
+import java.util.Set;
 import java.util.Stack;
 
 public class M150ReversePolishNotation {
 
-    public static int evalRPN(String[] tokens) {
+    public int evalRPN(String[] tokens) {
+        Set<String> operands = Set.of("+", "-", "*", "/");
         Stack<Integer> stack = new Stack<>();
 
-        for (String s : tokens) {
-            if (s.equals("+") || s.equals("-") || s.equals("*") || s.equals("/")) {
-                int i1 = stack.pop();
-                int i2 = stack.pop();
-                int result = switch (s) {
-                    case "+" -> i2 + i1;
-                    case "-" -> i2 - i1;
-                    case "*" -> i2 * i1;
-                    default -> i2 / i1;
+        for (String token : tokens) {
+            if (operands.contains(token)) {
+                int num1 = stack.pop();
+                int num2 = stack.pop();
+                switch (token) {
+                    case "+" -> stack.push(num2 + num1);
+                    case "-" -> stack.push(num2 - num1);
+                    case "*" -> stack.push(num2 * num1);
+                    case "/" -> stack.push(num2 / num1);
                 };
-                stack.push(result);
             } else {
-                stack.push(Integer.valueOf(s));
+                stack.push(Integer.parseInt(token));
             }
         }
         return stack.pop();

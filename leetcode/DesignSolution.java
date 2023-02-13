@@ -1,5 +1,4 @@
-import design.H297SerializeDeserializeTree;
-import util.TreeNode;
+import medium.M155MinStack;
 
 public class DesignSolution {
     public static void main(String[] args) {
@@ -45,9 +44,20 @@ public class DesignSolution {
 //        // cache=[3,4], cnt(4)=1, cnt(3)=3
 //        lfu.get(4);     // return 4
 //        // cache=[4,3], cnt(4)=2, cnt(3)=3
-        H297SerializeDeserializeTree h297 = new H297SerializeDeserializeTree();
-        TreeNode root = h297.deserialize("1,2,3,null,null,4,5,6,7");
-        String s = h297.serialize(root);
-        System.out.println(s);
+//        H297SerializeDeserializeTree h297 = new H297SerializeDeserializeTree();
+//        TreeNode root = h297.deserialize("1,2,3,null,null,4,5,6,7");
+//        String s = h297.serialize(root);
+//        System.out.println(s);
+        M155MinStack m155 = new M155MinStack();
+        m155.push(512);
+        m155.push(-1024);
+        m155.push(-1024);
+        m155.push(512);
+        m155.pop();
+        m155.getMin();
+        m155.pop();
+        m155.getMin();
+        m155.pop();
+        m155.getMin();
     }
 }

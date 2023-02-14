@@ -1,5 +1,3 @@
-import medium.M155MinStack;
-
 public class DesignSolution {
     public static void main(String[] args) {
 //        M707DesignLinkedList head = new M707DesignLinkedList();
@@ -48,16 +46,16 @@ public class DesignSolution {
 //        TreeNode root = h297.deserialize("1,2,3,null,null,4,5,6,7");
 //        String s = h297.serialize(root);
 //        System.out.println(s);
-        M155MinStack m155 = new M155MinStack();
-        m155.push(512);
-        m155.push(-1024);
-        m155.push(-1024);
-        m155.push(512);
-        m155.pop();
-        m155.getMin();
-        m155.pop();
-        m155.getMin();
-        m155.pop();
-        m155.getMin();
+//        M155MinStack m155 = new M155MinStack();
+//        m155.push(512);
+//        m155.push(-1024);
+//        m155.push(-1024);
+//        m155.push(512);
+//        m155.pop();
+//        m155.getMin();
+//        m155.pop();
+//        m155.getMin();
+//        m155.pop();
+//        m155.getMin();
     }
 }

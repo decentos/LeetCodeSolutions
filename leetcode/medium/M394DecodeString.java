@@ -1,38 +1,35 @@
 package medium;
 
 public class M394DecodeString {
-    static int index = 0;
+    private int index = 0;
 
-    public static String decodeString(String s) {
-        StringBuilder result = new StringBuilder();
+    public String decodeString(String s) {
+        StringBuilder decode = new StringBuilder();
         int times = 0;
 
         while (index < s.length()) {
-            char current = s.charAt(index);
-            index++;
+            while (index < s.length() && Character.isLetter(s.charAt(index))) {
+                decode.append(s.charAt(index));
+                index++;
+            }
 
-            if (current == ']') {
+            if (index >= s.length() || s.charAt(index) == ']') {
+                index++;
                 break;
-            }
-            if (Character.isLetter(current)) {
-                result.append(current);
-                continue;
-            }
-            if (current == '[') {
-                String temp = decodeString(s);
-                result.append(temp.repeat(times));
+            } else if (s.charAt(index) == '[') {
+                index++;
+                String nested = decodeString(s);
+                decode.append(nested.repeat(times));
                 times = 0;
             } else {
                 StringBuilder sTimes = new StringBuilder();
-                index = index - 1;
-                while (Character.isDigit(s.charAt(index))) {
+                while (index < s.length() && Character.isDigit(s.charAt(index))) {
                     sTimes.append(s.charAt(index));
                     index++;
                 }
                 times = Integer.parseInt(sTimes.toString());
-//                times = times * 10 + current - '0'; //handle count case which has more than one digit
             }
         }
-        return result.toString();
+        return decode.toString();
     }
 }

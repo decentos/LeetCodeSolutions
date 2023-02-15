@@ -1,29 +1,26 @@
 package matrix;
 
 public class M200NumberOfIslands {
-    static private int n;
-    static private int m;
 
-    public static int numIslands(char[][] grid) {
+    public int numIslands(char[][] grid) {
         int count = 0;
-        n = grid.length;
-        m = grid[0].length;
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < m; j++)
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[0].length; j++) {
                 if (grid[i][j] == '1') {
-                    checkNext(grid, i, j);
+                    helper(grid, i, j);
                     count++;
                 }
+            }
         }
         return count;
     }
 
-    private static void checkNext(char[][] grid, int i, int j) {
-        if (i < 0 || j < 0 || i >= n || j >= m || grid[i][j] != '1') return;
-        grid[i][j] = '2';
-        checkNext(grid, i + 1, j);
-        checkNext(grid, i - 1, j);
-        checkNext(grid, i, j + 1);
-        checkNext(grid, i, j - 1);
+    private void helper(char[][] grid, int row, int col) {
+        if (row < 0 || col < 0 || row >= grid.length || col >= grid[0].length || grid[row][col] == '0') return;
+        grid[row][col] = '0';
+        helper(grid, row + 1, col);
+        helper(grid, row - 1, col);
+        helper(grid, row, col + 1);
+        helper(grid, row, col - 1);
     }
 }

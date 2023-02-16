@@ -107,6 +107,5 @@ class Solution {
 //        m249.groupStrings(new String[]{"abc","bcd","acef","xyz","az","ba","a","z"});
 //        M288UniqueWordAbbreviation m288 = new M288UniqueWordAbbreviation(new String[]{"door","naive"});
 //        m288.isUnique("cat");
-        System.out.println(Math.log(16) / Math.log(2));
     }
 }

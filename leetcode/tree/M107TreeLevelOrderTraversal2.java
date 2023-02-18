@@ -8,14 +8,13 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-public class M102TreeOrderTraversal {
+public class M107TreeLevelOrderTraversal2 {
 
-    public List<List<Integer>> levelOrder(TreeNode root) {
+    public List<List<Integer>> levelOrderBottom(TreeNode root) {
         if (root == null) return Collections.emptyList();
-        List<List<Integer>> result = new ArrayList<>();
+        List<List<Integer>> result = new LinkedList<>();
         Queue<TreeNode> queue = new LinkedList<>();
         queue.offer(root);
-
         while (!queue.isEmpty()) {
             List<Integer> level = new ArrayList<>();
             int size = queue.size();
@@ -25,7 +24,7 @@ public class M102TreeOrderTraversal {
                 if (node.left != null) queue.offer(node.left);
                 if (node.right != null) queue.offer(node.right);
             }
-            result.add(level);
+            result.add(0, level);
         }
         return result;
     }

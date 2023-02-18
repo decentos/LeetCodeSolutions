@@ -6,7 +6,6 @@ public class M536ConstructTreeFromString {
     private int index = 0;
 
     public TreeNode str2tree(String s) {
-        if (s.length() == 0) return null;
         return dfs(s);
     }
 
@@ -24,7 +23,6 @@ public class M536ConstructTreeFromString {
             index++;
             node.left = dfs(s);
         }
-
         if (index < s.length() && s.charAt(index) == '(') {
             index++;
             node.right = dfs(s);
@@ -35,11 +33,11 @@ public class M536ConstructTreeFromString {
     }
 
     private int getVal(String s) {
-        StringBuilder sVal = new StringBuilder();
-        while (index < s.length() && s.charAt(index) != ')' && s.charAt(index) != '(') {
-            sVal.append(s.charAt(index));
+        StringBuilder val = new StringBuilder();
+        while (index < s.length() && (Character.isDigit(s.charAt(index)) || s.charAt(index) == '-')) {
+            val.append(s.charAt(index));
             index++;
         }
-        return Integer.parseInt(sVal.toString());
+        return Integer.parseInt(val.toString());
     }
 }

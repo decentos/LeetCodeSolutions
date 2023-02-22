@@ -4,13 +4,13 @@ import util.TreeNode;
 
 public class M98ValidateBinaryTree {
 
-    public static boolean isValidBST(TreeNode root) {
+    public boolean isValidBST(TreeNode root) {
         return isValidBST(root, Long.MIN_VALUE, Long.MAX_VALUE);
     }
 
-    private static boolean isValidBST(TreeNode root, long minVal, long maxVal) {
-        if (root == null) return true;
-        if (root.val >= maxVal || root.val <= minVal) return false;
-        return isValidBST(root.left, minVal, root.val) && isValidBST(root.right, root.val, maxVal);
+    private boolean isValidBST(TreeNode node, long min, long max) {
+        if (node == null) return true;
+        if (min >= node.val || node.val >= max) return false;
+        return isValidBST(node.left, min, node.val) && isValidBST(node.right, node.val, max);
     }
 }

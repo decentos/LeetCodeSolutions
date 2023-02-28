@@ -27,6 +27,8 @@ public class M450DeleteNode {
         }
     }
 
+// ===============================================================================
+
     public TreeNode deleteNode2(TreeNode root, int key) {
         if (root == null) return null;
 
@@ -58,5 +60,41 @@ public class M450DeleteNode {
         root = root.left;
         while (root.right != null) root = root.right;
         return root.val;
+    }
+
+// ===============================================================================
+
+    public TreeNode deleteNode3(TreeNode root, int key) {
+        TreeNode curr = root;
+        TreeNode prev = null;
+        while (curr != null && curr.val != key) {
+            prev = curr;
+            if (curr.val > key) curr = curr.left;
+            else curr = curr.right;
+        }
+
+        if (prev == null) return deleteNode(curr);
+        if (curr == prev.left) prev.left = deleteNode(curr);
+        else prev.right = deleteNode(curr);
+        return root;
+    }
+
+    private TreeNode deleteNode(TreeNode node) {
+        if (node == null) return null;
+        if (node.left == null) return node.right;
+        if (node.right == null) return node.left;
+
+        TreeNode curr = node.right;
+        TreeNode prev = null;
+        while (curr.left != null) {
+            prev = curr;
+            curr = curr.left;
+        }
+        curr.left = node.left;
+        if (node.right != curr) {
+            prev.left = curr.right;
+            curr.right = node.right;
+        }
+        return curr;
     }
 }

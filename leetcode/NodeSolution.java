@@ -1,3 +1,6 @@
+import linkedlist.M24SwapNodesPairs;
+import util.ListNode;
+
 public class NodeSolution {
     public static void main(String[] args) {
 //        ListNode headA = ListNode.createList(4, 1);
@@ -32,5 +35,8 @@ public class NodeSolution {
 //        ListNode result = M61RotateList.rotateRight(head, 2);
 //        ListNode head = ListNode.createList(4,2,1,3);
 //        M147InsertionSortList.insertionSortList(head);
+        ListNode head = ListNode.createList(1,2,3,4);
+        M24SwapNodesPairs m24 = new M24SwapNodesPairs();
+        m24.swapPairs(head);
     }
 }

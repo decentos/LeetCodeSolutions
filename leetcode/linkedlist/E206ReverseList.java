@@ -17,13 +17,14 @@ public class E206ReverseList {
         return result;
     }
 
-    public static ListNode reverseList2(ListNode head) {
+    public ListNode reverseList2(ListNode head) {
+        ListNode curr = head;
         ListNode prev = null;
-        while (head != null) {
-            ListNode next = head.next;
-            head.next = prev;
-            prev = head;
-            head = next;
+        while (curr != null) {
+            ListNode next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
         }
         return prev;
     }

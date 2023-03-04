@@ -30,4 +30,11 @@ public class E111MinDepth {
         if (root.right == null) return minDepth2(root.left) + 1;
         return Math.min(minDepth2(root.left), minDepth2(root.right)) + 1;
     }
+
+    public int minDepth3(TreeNode root) {
+        if (root == null) return 0;
+        int left = minDepth3(root.left);
+        int right = minDepth3(root.right);
+        return (left == 0 || right == 0) ? left + right + 1 : Math.min(left, right) + 1;
+    }
 }

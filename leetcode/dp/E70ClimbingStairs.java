@@ -28,4 +28,27 @@ public class E70ClimbingStairs {
         }
         return arr[n - 1];
     }
+
+    public int climbStairs3(int n) {
+        int prev1 = 0, prev2 = 1, curr = 0;
+
+        for (int i = n; i > 0; i--) {
+            curr = prev1 + prev2;
+            prev1 = prev2;
+            prev2 = curr;
+        }
+        return curr;
+    }
+
+    public int climbStairs4(int n) {
+        if (n < 3) return n;
+        int prev1 = 1, prev2 = 2, curr = 0;
+
+        for (int i = 3; i <= n; i++) {
+            curr = prev1 + prev2;
+            prev1 = prev2;
+            prev2 = curr;
+        }
+        return curr;
+    }
 }

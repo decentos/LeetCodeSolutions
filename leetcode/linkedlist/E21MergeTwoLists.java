@@ -2,7 +2,7 @@ package linkedlist;
 
 import util.ListNode;
 
-public class E2121MergeTwoLists {
+public class E21MergeTwoLists {
 
     public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
         ListNode merged = new ListNode();

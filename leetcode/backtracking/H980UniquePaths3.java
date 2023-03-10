@@ -1,4 +1,4 @@
-package hard;
+package backtracking;
 
 public class H980UniquePaths3 {
     private static int count = 0;

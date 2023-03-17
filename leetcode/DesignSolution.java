@@ -1,3 +1,5 @@
+import design.M677MapSumPairs;
+
 public class DesignSolution {
     public static void main(String[] args) {
 //        M707DesignLinkedList head = new M707DesignLinkedList();
@@ -57,5 +59,12 @@ public class DesignSolution {
 //        m155.getMin();
 //        m155.pop();
 //        m155.getMin();
+        M677MapSumPairs m677 = new M677MapSumPairs();
+        m677.insert("apple", 3);
+        m677.sum("ap");
+        m677.insert("app", 2);
+        m677.sum("ap");
+        m677.insert("apple", 2);
+        m677.sum("ap");
     }
 }

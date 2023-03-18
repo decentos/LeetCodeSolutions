@@ -1,4 +1,4 @@
-import trie.M211DesignAddSearchStructure;
+import design.M1472DesignBrowserHistory;
 
 public class DesignSolution {
     public static void main(String[] args) {
@@ -66,11 +66,22 @@ public class DesignSolution {
 //        m677.sum("ap");
 //        m677.insert("apple", 2);
 //        m677.sum("ap");
-        M211DesignAddSearchStructure m211 = new M211DesignAddSearchStructure();
-        m211.addWord("at");
-        m211.addWord("and");
-        m211.addWord("an");
-        m211.addWord("add");
-        m211.search("a");
+//        M211DesignAddSearchStructure m211 = new M211DesignAddSearchStructure();
+//        m211.addWord("at");
+//        m211.addWord("and");
+//        m211.addWord("an");
+//        m211.addWord("add");
+//        m211.search("a");
+        M1472DesignBrowserHistory m1472 = new M1472DesignBrowserHistory("leetcode.com");
+        m1472.visit("google.com");
+        m1472.visit("facebook.com");
+        m1472.visit("youtube.com");
+        m1472.back(1);
+        m1472.back(1);
+        m1472.forward(1);
+        m1472.visit("linkedin.com");
+        m1472.forward(2);
+        m1472.back(2);
+        m1472.back(7);
     }
 }

@@ -7,7 +7,6 @@ public class M2597BeautifulSubsets {
     private int count;
 
     public int beautifulSubsets(int[] nums, int k) {
-        if (nums.length == 1) return 1;
         generate(new HashSet<>(), nums, k, 0);
         return count;
     }

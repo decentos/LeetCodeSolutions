@@ -1,16 +1,16 @@
 package linkedlist;
 
-import util.DoublyNode;
+import util.DoublyListNode;
 
 public class M430FlattenDoublyList {
 
-    public static DoublyNode flatten(DoublyNode head) {
+    public static DoublyListNode flatten(DoublyListNode head) {
         if (head == null) return null;
-        DoublyNode curr = head;
+        DoublyListNode curr = head;
         while (curr != null) {
             if (curr.child != null) {
-                DoublyNode next = curr.next;
-                DoublyNode children = curr.child;
+                DoublyListNode next = curr.next;
+                DoublyListNode children = curr.child;
                 curr.child = null;
                 curr.next = children;
                 children.prev = curr;

@@ -42,25 +42,25 @@ public class M449SerializeDeserializeBST {
         Queue<TreeNode> queue = new LinkedList<>();
         TreeNode root = new TreeNode(Integer.parseInt(splitted[0]));
         queue.offer(root);
-        int index = 0;
+        int index = 1;
 
         while (!queue.isEmpty()) {
             TreeNode node = queue.poll();
-            if (index + 1 < splitted.length) {
-                index++;
+            if (index < splitted.length) {
                 String next = splitted[index];
                 if (!next.equals("null")) {
                     node.left = new TreeNode(Integer.parseInt(next));
                     queue.offer(node.left);
                 }
-            }
-            if (index + 1 < splitted.length) {
                 index++;
+            }
+            if (index < splitted.length) {
                 String next = splitted[index];
                 if (!next.equals("null")) {
                     node.right = new TreeNode(Integer.parseInt(next));
                     queue.offer(node.right);
                 }
+                index++;
             }
         }
         return root;

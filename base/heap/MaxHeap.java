@@ -1,3 +1,5 @@
+package heap;
+
 public class MaxHeap {
     /**
      * Create a complete binary tree using an array

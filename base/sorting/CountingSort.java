@@ -1,3 +1,5 @@
+package sorting;
+
 public class CountingSort {
 
     // range from 0 to 100

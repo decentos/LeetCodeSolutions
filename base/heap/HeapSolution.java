@@ -1,3 +1,5 @@
+package heap;
+
 public class HeapSolution {
     public static void main(String[] args) {
         // Test case

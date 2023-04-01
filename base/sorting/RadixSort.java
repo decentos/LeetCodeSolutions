@@ -1,3 +1,5 @@
+package sorting;
+
 public class RadixSort {
     private static final int SIZE = 10;
 

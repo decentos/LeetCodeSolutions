@@ -1,3 +1,5 @@
+package sorting;
+
 public class SortingSolution {
     public static void main(String[] args) {
         SelectionSort.selectionSort(new int[]{7, 3, 2, 5, 6, 10, 9, 8, 1});

@@ -1,3 +1,5 @@
+package heap;
+
 public class MinHeap {
     /**
      * Create a complete binary tree using an array

@@ -1,3 +1,5 @@
+import dp.H1770MaximumScore;
+
 class Solution {
     public static void main(String[] args) {
 //        RomanToInt.romanToInt("MCDLXXXVIII");
@@ -107,5 +109,7 @@ class Solution {
 //        m249.groupStrings(new String[]{"abc","bcd","acef","xyz","az","ba","a","z"});
 //        M288UniqueWordAbbreviation m288 = new M288UniqueWordAbbreviation(new String[]{"door","naive"});
 //        m288.isUnique("cat");
+        H1770MaximumScore h1770 = new H1770MaximumScore();
+        h1770.maximumScore(new int[]{-5,-3,-3,-2,7,1}, new int[]{-10,-5,3,4,6});
     }
 }

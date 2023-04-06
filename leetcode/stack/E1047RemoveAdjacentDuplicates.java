@@ -1,31 +1,26 @@
-package easy;
+package stack;
 
 import java.util.Stack;
 
-public class RemoveAdjacentDuplicates {
+public class E1047RemoveAdjacentDuplicates {
 
     public String removeDuplicates(String s) {
-        if (s.length() <= 1) return s;
-        
         Stack<Character> stack = new Stack<>();
-        StringBuilder sb = new StringBuilder();
 
-        for (int i = 0; i < s.length(); i++) {
-            char current = s.charAt(i);
-            if (!stack.empty() && stack.peek() == current) {
+        for (char c : s.toCharArray()) {
+            if (!stack.isEmpty() && c == stack.peek()) {
                 stack.pop();
             } else {
-                stack.push(current);
+                stack.push(c);
             }
         }
 
-        for (char c : stack) sb.append(c);
-        return sb.toString();
+        StringBuilder ans = new StringBuilder();
+        for (char c : stack) ans.append(c);
+        return ans.toString();
     }
 
     public static String removeDuplicates2(String s) {
-        if (s.length() <= 1) return s;
-
         StringBuilder sb = new StringBuilder(s);
 
         int slow = 0, fast = 1;

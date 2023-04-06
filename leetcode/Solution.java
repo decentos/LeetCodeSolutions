@@ -1,4 +1,5 @@
-import dp.H1770MaximumScore;
+import medium.M128LongestConsecutiveSequence;
+import stack.H2454NextGreaterElement4;
 
 class Solution {
     public static void main(String[] args) {
@@ -109,7 +110,11 @@ class Solution {
 //        m249.groupStrings(new String[]{"abc","bcd","acef","xyz","az","ba","a","z"});
 //        M288UniqueWordAbbreviation m288 = new M288UniqueWordAbbreviation(new String[]{"door","naive"});
 //        m288.isUnique("cat");
-        H1770MaximumScore h1770 = new H1770MaximumScore();
-        h1770.maximumScore(new int[]{-5,-3,-3,-2,7,1}, new int[]{-10,-5,3,4,6});
+//        H1770MaximumScore h1770 = new H1770MaximumScore();
+//        h1770.maximumScore(new int[]{-5,-3,-3,-2,7,1}, new int[]{-10,-5,3,4,6});
+        M128LongestConsecutiveSequence m128 = new M128LongestConsecutiveSequence();
+        m128.longestConsecutive(new int[]{1,2,0,1});
+        H2454NextGreaterElement4 h2454 = new H2454NextGreaterElement4();
+        h2454.secondGreaterElement(new int[]{2,4,0,9,6});
     }
 }

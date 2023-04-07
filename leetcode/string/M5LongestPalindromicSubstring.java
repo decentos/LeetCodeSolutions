@@ -1,4 +1,4 @@
-package dp;
+package string;
 
 public class M5LongestPalindromicSubstring {
 

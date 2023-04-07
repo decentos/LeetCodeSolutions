@@ -1,4 +1,4 @@
-package easy;
+package string;
 
 public class E541ReverseString2 {
 

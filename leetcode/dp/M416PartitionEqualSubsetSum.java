@@ -7,17 +7,18 @@ public class M416PartitionEqualSubsetSum {
         for (int num : nums) sum += num;
         if (sum % 2 != 0) return false;
 
-        Boolean[][] used = new Boolean[nums.length][sum / 2 + 1];
-        return dfs(nums, sum / 2, 0, used);
+        int target = sum / 2;
+        Boolean[][] memo = new Boolean[nums.length][target + 1];
+        return dfs(nums, target, 0, memo);
     }
 
-    private boolean dfs(int[] nums, int target, int index, Boolean[][] used) {
+    private boolean dfs(int[] nums, int target, int index, Boolean[][] memo) {
         if (target < 0 || index == nums.length) return false;
         if (target == 0) return true;
-        if (used[index][target] != null) return used[index][target];
+        if (memo[index][target] != null) return memo[index][target];
 
-        boolean result = dfs(nums, target - nums[index], index + 1, used) || dfs(nums, target, index + 1, used);
-        used[index][target] = result;
+        boolean result = dfs(nums, target - nums[index], index + 1, memo) || dfs(nums, target, index + 1, memo);
+        memo[index][target] = result;
         return result;
     }
 
@@ -38,7 +39,6 @@ public class M416PartitionEqualSubsetSum {
                 } else {
                     dp[i][j] = dp[i - 1][j] || dp[i - 1][j - curr];
                 }
-
             }
         }
         return dp[n][target];

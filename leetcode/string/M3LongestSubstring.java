@@ -1,4 +1,4 @@
-package medium;
+package string;
 
 public class M3LongestSubstring {
 

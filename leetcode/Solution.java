@@ -1,5 +1,4 @@
-import medium.M128LongestConsecutiveSequence;
-import stack.H2454NextGreaterElement4;
+import medium.M16ThreeSumClosest;
 
 class Solution {
     public static void main(String[] args) {
@@ -112,9 +111,11 @@ class Solution {
 //        m288.isUnique("cat");
 //        H1770MaximumScore h1770 = new H1770MaximumScore();
 //        h1770.maximumScore(new int[]{-5,-3,-3,-2,7,1}, new int[]{-10,-5,3,4,6});
-        M128LongestConsecutiveSequence m128 = new M128LongestConsecutiveSequence();
-        m128.longestConsecutive(new int[]{1,2,0,1});
-        H2454NextGreaterElement4 h2454 = new H2454NextGreaterElement4();
-        h2454.secondGreaterElement(new int[]{2,4,0,9,6});
+//        M128LongestConsecutiveSequence m128 = new M128LongestConsecutiveSequence();
+//        m128.longestConsecutive(new int[]{1,2,0,1});
+//        H2454NextGreaterElement4 h2454 = new H2454NextGreaterElement4();
+//        h2454.secondGreaterElement(new int[]{2,4,0,9,6});
+        M16ThreeSumClosest m16 = new M16ThreeSumClosest();
+        m16.threeSumClosest(new int[]{4,0,5,-5,3,3,0,-4,-5}, -2);
     }
 }

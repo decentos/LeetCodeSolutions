@@ -5,6 +5,7 @@ import w338.M2602MinOperationsArraysEqual;
 import w339.E2609FindBalancedSubstring;
 import w339.M2610ConvertArrayInto2D;
 import w339.M2611MiceAndCheese;
+import w340.M2616MaximumDifferencePairs;
 
 public class ContestSolution {
     public static void main(String[] args) {
@@ -22,5 +23,7 @@ public class ContestSolution {
         m2610.findMatrix(new int[]{1,3,4,1,2,3,1});
         M2611MiceAndCheese m2611 = new M2611MiceAndCheese();
         m2611.miceAndCheese(new int[]{1,1,3,4}, new int[]{4,4,1,1}, 2);
+        M2616MaximumDifferencePairs m2616 = new M2616MaximumDifferencePairs();
+        m2616.minimizeMax(new int[]{3,4,2,3,2,1,2}, 3);
     }
 }

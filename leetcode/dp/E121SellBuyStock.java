@@ -18,11 +18,11 @@ public class E121SellBuyStock {
     }
 
     public int maxProfit2(int[] prices) {
-        int profit = 0, min = prices[0];
+        int profit = 0, min = Integer.MAX_VALUE;
 
-        for (int i = 1; i < prices.length; i++) {
-            profit = Math.max(profit, prices[i] - min);
-            min = Math.min(min, prices[i]);
+        for (int price : prices) {
+            min = Math.min(min, price);
+            profit = Math.max(profit, price - min);
         }
         return profit;
     }

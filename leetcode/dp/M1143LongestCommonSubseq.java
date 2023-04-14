@@ -1,6 +1,6 @@
 package dp;
 
-public class M1143LongestSubsequence {
+public class M1143LongestCommonSubseq {
 
     public int longestCommonSubsequence(String text1, String text2) {
         int l1 = text1.length(), l2 = text2.length();

@@ -6,6 +6,7 @@ import w339.E2609FindBalancedSubstring;
 import w339.M2610ConvertArrayInto2D;
 import w339.M2611MiceAndCheese;
 import w340.M2616MaximumDifferencePairs;
+import w342.M2653SlidingSubarrayBeauty;
 
 public class ContestSolution {
     public static void main(String[] args) {
@@ -25,5 +26,7 @@ public class ContestSolution {
         m2611.miceAndCheese(new int[]{1,1,3,4}, new int[]{4,4,1,1}, 2);
         M2616MaximumDifferencePairs m2616 = new M2616MaximumDifferencePairs();
         m2616.minimizeMax(new int[]{3,4,2,3,2,1,2}, 3);
+        M2653SlidingSubarrayBeauty m2653 = new M2653SlidingSubarrayBeauty();
+        m2653.getSubarrayBeauty(new int[]{-3,1,2,-3,0,-3}, 2, 1);
     }
 }

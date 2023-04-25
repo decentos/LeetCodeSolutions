@@ -14,10 +14,10 @@ public class M99RecoverBST {
         if (node == null) return;
         dfs(node.left);
 
-        if (prev != null && a == null && prev.val >= node.val) {
+        if (prev != null && a == null && prev.val > node.val) {
             a = prev;
         }
-        if (a != null && prev.val >= node.val) {
+        if (a != null && prev.val > node.val) {
             b = node;
         }
         prev = node;

@@ -1,4 +1,4 @@
-import medium.M16ThreeSumClosest;
+import twopointers.M16ThreeSumClosest;
 
 class Solution {
     public static void main(String[] args) {

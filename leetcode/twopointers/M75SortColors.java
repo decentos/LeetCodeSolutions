@@ -1,4 +1,4 @@
-package medium;
+package twopointers;
 
 public class M75SortColors {
 

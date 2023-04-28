@@ -1,4 +1,4 @@
-package easy;
+package twopointers;
 
 public class E283MoveZeroes {
 

@@ -7,6 +7,8 @@ import w339.M2610ConvertArrayInto2D;
 import w339.M2611MiceAndCheese;
 import w340.M2616MaximumDifferencePairs;
 import w342.M2653SlidingSubarrayBeauty;
+import w343.E2660WinnerBowlingGame;
+import w343.M2661FirstCompletelyPainted;
 
 public class ContestSolution {
     public static void main(String[] args) {
@@ -28,5 +30,9 @@ public class ContestSolution {
         m2616.minimizeMax(new int[]{3,4,2,3,2,1,2}, 3);
         M2653SlidingSubarrayBeauty m2653 = new M2653SlidingSubarrayBeauty();
         m2653.getSubarrayBeauty(new int[]{-3,1,2,-3,0,-3}, 2, 1);
+        E2660WinnerBowlingGame e2660 = new E2660WinnerBowlingGame();
+        e2660.isWinner(new int[]{10,2,2,3}, new int[]{3,8,4,5});
+        M2661FirstCompletelyPainted m2661 = new M2661FirstCompletelyPainted();
+        m2661.firstCompleteIndex(new int[]{6,2,3,1,4,5}, new int[][]{{5,1}, {2,4},{6,3}});
     }
 }

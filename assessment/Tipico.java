@@ -1,6 +1,6 @@
 import java.util.Arrays;
 
-public class TipicoTest {
+public class Tipico {
     public static void main(String[] args) {
         solution(new int[]{2, -2, -3, 3}, new int[]{0, 0, 4, -4});
     }

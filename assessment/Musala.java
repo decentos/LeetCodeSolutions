@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-public class MusalaTest {
+public class Musala {
     public static void main(String[] args) {
         System.out.println(compressedString("abaabbbc"));
         System.out.println(countSentences(List.of("the", "bats", "tabs", "in", "cat", "act"), List.of("cat the bats", "in the act", "act tabs in")));

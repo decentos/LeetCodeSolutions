@@ -1,6 +1,6 @@
 import java.util.Arrays;
 
-public class N26Test {
+public class N26 {
 
     public boolean solution1(int[] A, int K) {
         int n = A.length;

@@ -3,7 +3,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-public class NIGTest {
+public class NIG {
     public static void main(String[] args) {
         System.out.println(solution(new int[]{5, 4, 0, 3, 1, 6, 2}));
         System.out.println(solution(new int[0]));

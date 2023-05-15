@@ -14,7 +14,7 @@ public class E136SingleNumber {
                 set.add(i);
             }
         }
-        return set.stream().findAny().orElse(-1);
+        return set.iterator().next();
     }
 
 }

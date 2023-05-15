@@ -1,25 +1,28 @@
 package medium;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class M763PartitionLabels {
 
     public List<Integer> partitionLabels(String s) {
-        if (s.length() == 1) return Collections.singletonList(1);
-        List<Integer> result = new ArrayList<>();
-        char[] chars = s.toCharArray();
-        Map<Character, Integer> map = new HashMap<>();
+        List<Integer> partitions = new ArrayList<>();
+        int[] lastIndex = new int[26];
 
-        for (int i = 0; i < chars.length; i++) {
-            map.put(chars[i], i);
+        for (int i = 0; i < s.length(); i++) {
+            lastIndex[s.charAt(i) - 'a'] = i;
         }
 
+        int max = 0, prev = 0;
+        for (int i = 0; i < s.length(); i++) {
+            int last = lastIndex[s.charAt(i) - 'a'];
+            max = Math.max(max, last);
 
-
-        return result;
+            if (max == i) {
+                partitions.add(max - prev + 1);
+                prev = i + 1;
+            }
+        }
+        return partitions;
     }
 }

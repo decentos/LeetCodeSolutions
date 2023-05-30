@@ -13,6 +13,6 @@ public class M161OneEditDistance {
                 else return s.substring(i).equals(t.substring(i + 1));
             }
         }
-        return sLength + 1 == tLength;
+        return true;
     }
 }

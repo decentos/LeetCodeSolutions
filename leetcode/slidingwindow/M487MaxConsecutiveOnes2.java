@@ -1,4 +1,4 @@
-package medium;
+package slidingwindow;
 
 public class M487MaxConsecutiveOnes2 {
 

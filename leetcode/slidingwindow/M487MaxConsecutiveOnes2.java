@@ -3,45 +3,30 @@ package slidingwindow;
 public class M487MaxConsecutiveOnes2 {
 
     public int findMaxConsecutiveOnes(int[] nums) {
-        int n = nums.length;
-        int maxCount = 0, lastZero = 0, index = 0;
-        while (index < n) {
-            int currMax = 0;
-            while (index < n && nums[index] != 0) {
-                currMax++;
-                index++;
+        int left = 0, lastZero = -1, max = 0;
+
+        for (int right = 0; right < nums.length; right++) {
+            if (nums[right] == 0) {
+                left = lastZero + 1;
+                lastZero = right;
             }
-            if (index < n) {
-                lastZero = index;
-                index++;
-                currMax++;
-                while (index < n && nums[index] != 0) {
-                    currMax++;
-                    index++;
-                }
-                index = lastZero + 1;
-            }
-            maxCount = Math.max(maxCount, currMax);
+            max = Math.max(max, right - left + 1);
         }
-        return maxCount;
+        return max;
     }
 
     public int findMaxConsecutiveOnes2(int[] nums) {
-        int maxCount = 0, numZeroes = 0;
-        int left = 0, right = 0;
+        int prev = 0, curr = 0, max = 0;
 
-        while (right < nums.length) {
-            if (nums[right] == 0) numZeroes++;
-
-            while (numZeroes == 2) {
-                if (nums[left] == 0) {
-                    numZeroes--;
-                }
-                left++;
+        for (int num : nums) {
+            if (num == 1) {
+                curr++;
+            } else {
+                prev = curr + 1;
+                curr = 0;
             }
-            maxCount = Math.max(maxCount, right - left + 1);
-            right++;
+            max = Math.max(max, curr + prev);
         }
-        return maxCount;
+        return max;
     }
 }

@@ -1,4 +1,4 @@
-import twopointers.M16ThreeSumClosest;
+import matrix.M2352EqualRowCol;
 
 class Solution {
     public static void main(String[] args) {
@@ -115,7 +115,9 @@ class Solution {
 //        m128.longestConsecutive(new int[]{1,2,0,1});
 //        H2454NextGreaterElement4 h2454 = new H2454NextGreaterElement4();
 //        h2454.secondGreaterElement(new int[]{2,4,0,9,6});
-        M16ThreeSumClosest m16 = new M16ThreeSumClosest();
-        m16.threeSumClosest(new int[]{4,0,5,-5,3,3,0,-4,-5}, -2);
+//        M16ThreeSumClosest m16 = new M16ThreeSumClosest();
+//        m16.threeSumClosest(new int[]{4,0,5,-5,3,3,0,-4,-5}, -2);
+        M2352EqualRowCol m2352 = new M2352EqualRowCol();
+        m2352.equalPairs(new int[][]{{3, 2, 1}, {1, 7, 6}, {2, 7, 7}});
     }
 }

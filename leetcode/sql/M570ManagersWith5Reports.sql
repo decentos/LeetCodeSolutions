@@ -7,6 +7,8 @@ WHERE id IN (
   HAVING COUNT(*) >= 5
 );
 
+===============================
+
 SELECT e1.name
 FROM Employee e1
 INNER JOIN Employee e2

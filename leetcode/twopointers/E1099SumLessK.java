@@ -6,20 +6,19 @@ public class E1099SumLessK {
 
     public int twoSumLessThanK(int[] nums, int k) {
         Arrays.sort(nums);
-        int l = 0, r = nums.length - 1, result = -1;
+        int maxSum = -1;
+        int left = 0, right = nums.length - 1;
 
-        while (l < r) {
-            if (nums[r] >= k) {
-                r--;
-            }
-            int sum = nums[l] + nums[r];
-            if (sum < k) {
-                result = Math.max(sum, result);
-                l++;
+        while (left < right) {
+            int currSum = nums[left] + nums[right];
+
+            if (currSum < k) {
+                maxSum = Math.max(maxSum, currSum);
+                left++;
             } else {
-                r--;
+                right--;
             }
         }
-        return result;
+        return maxSum;
     }
 }

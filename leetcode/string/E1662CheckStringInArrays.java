@@ -3,35 +3,30 @@ package string;
 public class E1662CheckStringInArrays {
 
     public boolean arrayStringsAreEqual(String[] word1, String[] word2) {
-        StringBuilder arr1 = new StringBuilder();
-        StringBuilder arr2 = new StringBuilder();
-        for (String word : word1) {
-            arr1.append(word);
-        }
-        for (String word : word2) {
-            arr2.append(word);
-        }
-        return arr1.toString().equals(arr2.toString());
+        String str1 = String.join("", word1);
+        String str2 = String.join("", word2);
+        return str1.equals(str2);
     }
+
+// ===============================================================================
 
     public boolean arrayStringsAreEqual2(String[] word1, String[] word2) {
-        if (word1.length == 0 || word2.length == 0) return false;
-        return String.join("", word1).equals(String.join("", word2));
-    }
+        int index1 = 0, index2 = 0;
+        int ptr1 = 0, ptr2 = 0;
 
-    public boolean arrayStringsAreEqual3(String[] word1, String[] word2) {
-        if (word1.length == 0 || word2.length == 0) return false;
-        StringBuilder arr1 = new StringBuilder();
-        StringBuilder arr2 = new StringBuilder();
-        for (int i = 0; i < Math.max(word1.length, word2.length); i++) {
-            if (i < word1.length) {
-                arr1.append(word1[i]);
+        while (index1 < word1.length && index2 < word2.length) {
+            if (word1[index1].charAt(ptr1++) != word2[index2].charAt(ptr2++)) {
+                return false;
             }
-
-            if (i < word2.length) {
-                arr2.append(word2[i]);
+            if (ptr1 == word1[index1].length()) {
+                index1++;
+                ptr1 = 0;
+            }
+            if (ptr2 == word2[index2].length()) {
+                index2++;
+                ptr2 = 0;
             }
         }
-        return arr1.toString().equals(arr2.toString());
+        return index1 == word1.length && index2 == word2.length;
     }
 }

@@ -3,18 +3,19 @@ package twopointers;
 public class M80RemoveDuplicates2 {
 
     public int removeDuplicates(int[] nums) {
-        int p = 1, count = 1;
+        int insertIndex = 1, count = 1;
+
         for (int i = 1; i < nums.length; i++) {
-            if (nums[i] == nums[i - 1]) {
+            if (nums[i - 1] == nums[i]) {
                 count++;
             } else {
                 count = 1;
             }
+
             if (count <= 2) {
-                nums[p] = nums[i];
-                p++;
+                nums[insertIndex++] = nums[i];
             }
         }
-        return p;
+        return insertIndex;
     }
 }

@@ -11,15 +11,16 @@ public class E606ConstructStringFromTree {
     }
 
     private void dfs(TreeNode node, StringBuilder sb) {
-        if (node == null) return;
-
+        if (node == null) {
+            return;
+        }
         sb.append(node.val);
-        if (node.left == null && node.right == null) return;
-
+        if (node.left == null && node.right == null) {
+            return;
+        }
         sb.append("(");
         dfs(node.left, sb);
         sb.append(")");
-
         if (node.right != null) {
             sb.append("(");
             dfs(node.right, sb);

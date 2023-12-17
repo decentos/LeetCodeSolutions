@@ -1,4 +1,4 @@
-import design.M1429FirstUniqueNumber;
+import design.M2353DesignFoodRatingSystem;
 
 public class DesignSolution {
     public static void main(String[] args) {
@@ -89,13 +89,20 @@ public class DesignSolution {
 //        m348.move(0, 1, 1);
 //        m348.move(1, 1, 2);
 //        m348.move(1, 0, 1);
-        M1429FirstUniqueNumber m1429 = new M1429FirstUniqueNumber(new int[]{2,3,5});
-        System.out.println(m1429.showFirstUnique());
-        m1429.add(5);
-        System.out.println(m1429.showFirstUnique());
-        m1429.add(2);
-        System.out.println(m1429.showFirstUnique());
-        m1429.add(3);
-        System.out.println(m1429.showFirstUnique());
+//        M1429FirstUniqueNumber m1429 = new M1429FirstUniqueNumber(new int[]{2,3,5});
+//        System.out.println(m1429.showFirstUnique());
+//        m1429.add(5);
+//        System.out.println(m1429.showFirstUnique());
+//        m1429.add(2);
+//        System.out.println(m1429.showFirstUnique());
+//        m1429.add(3);
+//        System.out.println(m1429.showFirstUnique());
+        M2353DesignFoodRatingSystem m2353DesignFoodRatingSystem = new M2353DesignFoodRatingSystem(new String[]{"kimchi", "miso", "sushi", "moussaka", "ramen", "bulgogi"}, new String[]{"korean", "japanese", "japanese", "greek", "japanese", "korean"}, new int[]{9, 12, 8, 15, 14, 7});
+        m2353DesignFoodRatingSystem.highestRated("korean");
+        m2353DesignFoodRatingSystem.highestRated("japanese");
+        m2353DesignFoodRatingSystem.changeRating("sushi", 16);
+        m2353DesignFoodRatingSystem.highestRated("japanese");
+        m2353DesignFoodRatingSystem.changeRating("ramen", 16);
+        m2353DesignFoodRatingSystem.highestRated("japanese");
     }
 }

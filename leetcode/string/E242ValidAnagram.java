@@ -1,24 +1,24 @@
 package string;
 
-import java.util.Arrays;
-
 public class E242ValidAnagram {
 
     public boolean isAnagram(String s, String t) {
-        if (s == null || t == null)
+        if (s.length() != t.length()) {
             return false;
+        }
 
-        if (s.length() != t.length())
-            return false;
+        int[] count = new int[26];
 
-        String firstSort = sortString(s);
-        String secondSort = sortString(t);
-        return firstSort.equals(secondSort);
-    }
+        for (int i = 0; i < s.length(); i++) {
+            count[s.charAt(i) - 'a']++;
+            count[t.charAt(i) - 'a']--;
+        }
 
-    private String sortString(String s) {
-        char[] chars = s.toCharArray();
-        Arrays.sort(chars);
-        return new String(chars);
+        for (int i : count) {
+            if (i != 0) {
+                return false;
+            }
+        }
+        return true;
     }
 }

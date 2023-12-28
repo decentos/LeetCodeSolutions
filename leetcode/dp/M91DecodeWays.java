@@ -31,10 +31,6 @@ public class M91DecodeWays {
 // ===============================================================================
 
     public int numDecodings_Dp(String s) {
-        if (s.charAt(0) == '0') {
-            return 0;
-        }
-
         int n = s.length();
         int[] dp = new int[n + 1];
         dp[n] = 1;
@@ -60,9 +56,11 @@ public class M91DecodeWays {
 
         for (int i = n - 1; i >= 0; i--) {
             int temp = s.charAt(i) == '0' ? 0 : curr;
+
             if (i < n - 1 && (s.charAt(i) == '1' || s.charAt(i) == '2' && s.charAt(i + 1) < '7')) {
                 temp += prev;
             }
+
             prev = curr;
             curr = temp;
         }

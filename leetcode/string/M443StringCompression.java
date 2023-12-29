@@ -3,24 +3,25 @@ package string;
 public class M443StringCompression {
 
     public int compress(char[] chars) {
-        StringBuilder result = new StringBuilder();
-        int count = 1, i = 0;
+        int n = chars.length;
+        int insertedIndex = 0, index = 0;
 
-        while (i < chars.length) {
-            while (i < chars.length - 1 && chars[i] == chars[i + 1]) {
+        while (index < n) {
+            char curr = chars[index];
+            int count = 0;
+            while (index < n && chars[index] == curr) {
                 count++;
-                i++;
+                index++;
             }
-            result.append(chars[i]);
+
+            chars[insertedIndex++] = curr;
             if (count > 1) {
-                result.append(count);
-                count = 1;
+                char[] temp = String.valueOf(count).toCharArray();
+                for (char c : temp) {
+                    chars[insertedIndex++] = c;
+                }
             }
-            i++;
         }
-        for (int j = 0; j < result.length(); j++) {
-            chars[j] = result.charAt(j);
-        }
-        return result.length();
+        return insertedIndex;
     }
 }

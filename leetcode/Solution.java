@@ -1,4 +1,4 @@
-import matrix.M2352EqualRowCol;
+import heap.M2512RewardTopKStudents;
 
 class Solution {
     public static void main(String[] args) {
@@ -117,7 +117,9 @@ class Solution {
 //        h2454.secondGreaterElement(new int[]{2,4,0,9,6});
 //        M16ThreeSumClosest m16 = new M16ThreeSumClosest();
 //        m16.threeSumClosest(new int[]{4,0,5,-5,3,3,0,-4,-5}, -2);
-        M2352EqualRowCol m2352 = new M2352EqualRowCol();
-        m2352.equalPairs(new int[][]{{3, 2, 1}, {1, 7, 6}, {2, 7, 7}});
+//        M2352EqualRowCol m2352 = new M2352EqualRowCol();
+//        m2352.equalPairs(new int[][]{{3, 2, 1}, {1, 7, 6}, {2, 7, 7}});
+        M2512RewardTopKStudents m2512 = new M2512RewardTopKStudents();
+        m2512.topStudents(new String[]{"yewmhbgnq","vqhhuaejqw"}, new String[]{"zjeyq","oyuetqe","ks","vuvannpwa","qfd","xv","aauvtxrdt","gml","eaky","mwip"}, new String[]{"lqiuderzod mwip vqhhuaejqw xrn aqjzkqjsi riuood yewmhbgnq xv nmcvqm onhkkmy","uccz yewmhbgnq rcxdaqicbe vqhhuaejqw yewmhbgnq e vqhhuaejqw b yewmhbgnq vqhhuaejqw","eaky yewmhbgnq eaky dwdzl yewmhbgnq yewmhbgnq ntqpnqtmnb qfd ks gvumi","ecutvv vqhhuaejqw vqhhuaejqw inu vqhhuaejqw vqhhuaejqw uu eodzum zjeyq fxebx","vqhhuaejqw m vuvannpwa mwip atvjp vqhhuaejqw eaky yewmhbgnq vqhhuaejqw yewmhbgnq"}, new int[]{581094748,245764367,905556075,127263030,415068015}, 4);
     }
 }

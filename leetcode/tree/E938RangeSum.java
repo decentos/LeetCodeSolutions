@@ -2,30 +2,41 @@ package tree;
 
 import util.TreeNode;
 
-import java.util.Stack;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class E938RangeSum {
-    private static int sum = 0;
 
-    public static int rangeSumBST(TreeNode root, int low, int high) {
-        if (root == null) return sum;
-        if (root.val >= low && root.val <= high) sum += root.val;
-        if (low < root.val) rangeSumBST(root.left, low, high);
-        if (root.val < high) rangeSumBST(root.right, low, high);
+    public int rangeSumBST(TreeNode root, int low, int high) {
+        int sum = 0;
+        if (root.val >= low && root.val <= high) {
+            sum += root.val;
+        }
+        if (root.left != null && root.val > low) {
+            sum += rangeSumBST(root.left, low, high);
+        }
+        if (root.right != null && root.val < high) {
+            sum += rangeSumBST(root.right, low, high);
+        }
         return sum;
     }
 
     public int rangeSumBST2(TreeNode root, int low, int high) {
         int sum = 0;
-        Stack<TreeNode> stack = new Stack<>();
-        stack.push(root);
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
 
-        while (!stack.empty()) {
-            TreeNode current = stack.pop();
-            if (current == null) continue;
-            if (current.val >= low && current.val <= high) sum += current.val;
-            if (low < current.val) stack.push(current.left);
-            if (current.val < high) stack.push(current.right);
+        while (!queue.isEmpty()) {
+            TreeNode node = queue.poll();
+            if (node.val >= low && node.val <= high) {
+                sum += node.val;
+            }
+            if (node.left != null && node.val > low) {
+                queue.offer(node.left);
+            }
+            if (node.right != null && node.val < high) {
+                queue.offer(node.right);
+            }
         }
         return sum;
     }

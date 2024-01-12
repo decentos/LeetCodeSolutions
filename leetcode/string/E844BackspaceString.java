@@ -2,32 +2,28 @@ package string;
 
 public class E844BackspaceString {
 
-    public static boolean backspaceCompare(String s, String t) {
-        int sPointer = 0, tPointer = 0;
-        StringBuilder sSb = new StringBuilder(s);
-        StringBuilder tSb = new StringBuilder(t);
+    public boolean backspaceCompare(String s, String t) {
+        int n1 = s.length(), n2 = t.length();
+        int ptr1 = n1 - 1, ptr2 = n2 - 1;
+        int skip1 = 0, skip2 = 0;
 
-        while (sPointer < sSb.length() && !sSb.isEmpty()) {
-            if (sPointer + 1 < sSb.length() && sSb.charAt(sPointer + 1) == '#') {
-                sSb.delete(sPointer, sPointer + 2);
-                if (sPointer > 0) {
-                    sPointer--;
-                }
+        while (ptr1 >= 0 || ptr2 >= 0) {
+            while (ptr1 >= 0 && (s.charAt(ptr1) == '#' || skip1 > 0)) {
+                skip1 += s.charAt(ptr1) == '#' ? 1 : -1;
+                ptr1--;
+            }
+            while (ptr2 >= 0 && (t.charAt(ptr2) == '#' || skip2 > 0)) {
+                skip2 += t.charAt(ptr2) == '#' ? 1 : -1;
+                ptr2--;
+            }
+
+            if (ptr1 >= 0 && ptr2 >= 0 && s.charAt(ptr1) == t.charAt(ptr2)) {
+                ptr1--;
+                ptr2--;
             } else {
-                sPointer++;
+                break;
             }
         }
-
-        while (tPointer < tSb.length() && !tSb.isEmpty()) {
-            if (tPointer + 1 < tSb.length() && tSb.charAt(tPointer + 1) == '#') {
-                tSb.delete(tPointer, tPointer + 2);
-                if (tPointer > 0) {
-                    tPointer--;
-                }
-            } else {
-                tPointer++;
-            }
-        }
-        return sSb.toString().replace("#", "").equals(tSb.toString().replace("#", ""));
+        return ptr1 < 0 && ptr2 < 0;
     }
 }

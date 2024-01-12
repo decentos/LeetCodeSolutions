@@ -3,33 +3,18 @@ package tree;
 import util.TreeNode;
 
 public class M1026MaximumDifference {
-    static int result = 0;
-
-    public static int maxAncestorDiff(TreeNode root) {
-        findMaxDiff(root, root.val, root.val);
-        return result;
+    public int maxAncestorDiff(TreeNode root) {
+        return findMax(root, root.val, root.val);
     }
 
-    private static void findMaxDiff(TreeNode root, int max, int min) {
-        if (root == null) return;
-        int curDiff = Math.max(Math.abs(max - root.val), Math.abs(min - root.val));
-        result = Math.max(result, curDiff);
-        max = Math.max(max, root.val);
-        min = Math.min(min, root.val);
-        findMaxDiff(root.left, max, min);
-        findMaxDiff(root.right, max, min);
-    }
-
-    public static int maxAncestorDiff2(TreeNode root) {
-        return findMaxDiff2(root, root.val, root.val);
-    }
-
-    private static int findMaxDiff2(TreeNode root, int max, int min) {
-        if (root == null) return max - min;
-        max = Math.max(max, root.val);
-        min = Math.min(min, root.val);
-        int left = max = findMaxDiff2(root.left, max, min);
-        int right = findMaxDiff2(root.right, max, min);
+    private int findMax(TreeNode node, int max, int min) {
+        if (node == null) {
+            return max - min;
+        }
+        max = Math.max(max, node.val);
+        min = Math.min(min, node.val);
+        int left = findMax(node.left, max, min);
+        int right = findMax(node.right, max, min);
         return Math.max(left, right);
     }
 }

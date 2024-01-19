@@ -1,42 +1,42 @@
 package design;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 public class M380InsertDeleteGetRandom {
-    private final List<Integer> values;
-    private final Map<Integer, Integer> indexes;
+    private final List<Integer> list;
+    private final Map<Integer, Integer> map;
     private final Random random;
 
     public M380InsertDeleteGetRandom() {
-        values = new ArrayList<>();
-        indexes = new HashMap<>();
+        list = new ArrayList<>();
+        map = new HashMap<>();
         random = new Random();
     }
 
     public boolean insert(int val) {
-        if (indexes.containsKey(val)) return false;
-        indexes.put(val, values.size());
-        values.add(val);
+        if (map.containsKey(val)) {
+            return false;
+        }
+        map.put(val, list.size());
+        list.add(val);
         return true;
     }
 
     public boolean remove(int val) {
-        Integer index = indexes.get(val);
-        if (index == null) return false;
-        int last = values.get(values.size() - 1);
-        values.set(index, last);
-        indexes.replace(last, index);
-        values.remove(values.size() - 1);
-        indexes.remove(val);
+        if (!map.containsKey(val)) {
+            return false;
+        }
+        int index = map.get(val);
+        int last = list.get(list.size() - 1);
+        list.set(index, last);
+        map.replace(last, index);
+        list.remove(list.size() - 1);
+        map.remove(val);
         return true;
     }
 
     public int getRandom() {
-        int index = random.nextInt(values.size());
-        return values.get(index);
+        int index = random.nextInt(list.size());
+        return list.get(index);
     }
 }

@@ -1,5 +1,3 @@
-import hard.H1235MaxProfitScheduling;
-
 class Solution {
     public static void main(String[] args) {
 //        RomanToInt.romanToInt("MCDLXXXVIII");
@@ -121,7 +119,7 @@ class Solution {
 //        m2352.equalPairs(new int[][]{{3, 2, 1}, {1, 7, 6}, {2, 7, 7}});
 //        M2512RewardTopKStudents m2512 = new M2512RewardTopKStudents();
 //        m2512.topStudents(new String[]{"yewmhbgnq","vqhhuaejqw"}, new String[]{"zjeyq","oyuetqe","ks","vuvannpwa","qfd","xv","aauvtxrdt","gml","eaky","mwip"}, new String[]{"lqiuderzod mwip vqhhuaejqw xrn aqjzkqjsi riuood yewmhbgnq xv nmcvqm onhkkmy","uccz yewmhbgnq rcxdaqicbe vqhhuaejqw yewmhbgnq e vqhhuaejqw b yewmhbgnq vqhhuaejqw","eaky yewmhbgnq eaky dwdzl yewmhbgnq yewmhbgnq ntqpnqtmnb qfd ks gvumi","ecutvv vqhhuaejqw vqhhuaejqw inu vqhhuaejqw vqhhuaejqw uu eodzum zjeyq fxebx","vqhhuaejqw m vuvannpwa mwip atvjp vqhhuaejqw eaky yewmhbgnq vqhhuaejqw yewmhbgnq"}, new int[]{581094748,245764367,905556075,127263030,415068015}, 4);
-        H1235MaxProfitScheduling h1235 = new H1235MaxProfitScheduling();
-        h1235.jobScheduling(new int[]{1,2,3,4,6}, new int[]{3,5,10,6,9}, new int[]{20,20,100,70,60});
+//        H1235MaxProfitScheduling h1235 = new H1235MaxProfitScheduling();
+//        h1235.jobScheduling(new int[]{1,2,3,4,6}, new int[]{3,5,10,6,9}, new int[]{20,20,100,70,60});
     }
 }

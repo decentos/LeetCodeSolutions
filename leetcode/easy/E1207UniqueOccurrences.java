@@ -9,8 +9,16 @@ public class E1207UniqueOccurrences {
 
     public boolean uniqueOccurrences(int[] arr) {
         Map<Integer, Integer> map = new HashMap<>();
-        for (int i : arr) map.merge(i, 1, Integer::sum);
-        Set<Integer> set = new HashSet<>(map.values());
-        return map.size() == set.size();
+        for (int i : arr) {
+            map.merge(i, 1, Integer::sum);
+        }
+        Set<Integer> set = new HashSet<>();
+        for (int i : map.values()) {
+            if (set.contains(i)) {
+                return false;
+            }
+            set.add(i);
+        }
+        return true;
     }
 }

@@ -7,12 +7,16 @@ public class E645SetMismatch {
         int[] ans = new int[2];
         int[] count = new int[n + 1];
 
-        for (int num : nums) count[num]++;
+        for (int num : nums) {
+            count[num]++;
+        }
 
         for (int i = 1; i <= n; i++) {
-            int curr = count[i];
-            if (curr == 2) ans[0] = i;
-            else if (curr == 0) ans[1] = i;
+            if (count[i] == 2) {
+                ans[0] = i;
+            } else if (count[i] == 0) {
+                ans[1] = i;
+            }
         }
         return ans;
     }

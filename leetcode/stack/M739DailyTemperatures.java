@@ -4,18 +4,18 @@ import java.util.Stack;
 
 public class M739DailyTemperatures {
 
-    public static int[] dailyTemperatures(int[] temperatures) {
-        int[] answer = new int[temperatures.length];
+    public int[] dailyTemperatures(int[] temperatures) {
+        int n = temperatures.length;
+        int[] daily = new int[n];
         Stack<Integer> stack = new Stack<>();
 
-        for (int currDay = 0; currDay < temperatures.length; currDay++) {
-            int currTemp = temperatures[currDay];
-            while (!stack.empty() && currTemp > temperatures[stack.peek()]) {
-                int prevDay = stack.pop();
-                answer[prevDay] = currDay - prevDay;
+        for (int i = 0; i < n; i++) {
+            while (!stack.isEmpty() && temperatures[i] > temperatures[stack.peek()]) {
+                int prev = stack.pop();
+                daily[prev] = i - prev;
             }
-            stack.push(currDay);
+            stack.push(i);
         }
-        return answer;
+        return daily;
     }
 }

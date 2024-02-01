@@ -6,19 +6,19 @@ import java.util.Stack;
 public class M150ReversePolishNotation {
 
     public int evalRPN(String[] tokens) {
-        Set<String> operands = Set.of("+", "-", "*", "/");
+        Set<String> operators = Set.of("+", "-", "*", "/");
         Stack<Integer> stack = new Stack<>();
 
         for (String token : tokens) {
-            if (operands.contains(token)) {
-                int num1 = stack.pop();
-                int num2 = stack.pop();
+            if (operators.contains(token)) {
+                int second = stack.pop();
+                int first = stack.pop();
                 switch (token) {
-                    case "+" -> stack.push(num2 + num1);
-                    case "-" -> stack.push(num2 - num1);
-                    case "*" -> stack.push(num2 * num1);
-                    case "/" -> stack.push(num2 / num1);
-                };
+                    case "+" -> stack.push(first + second);
+                    case "-" -> stack.push(first - second);
+                    case "*" -> stack.push(first * second);
+                    case "/" -> stack.push(first / second);
+                }
             } else {
                 stack.push(Integer.parseInt(token));
             }

@@ -4,11 +4,11 @@ import java.util.Stack;
 
 public class E232QueueViaStacks {
     private final Stack<Integer> stack;
-    private final Stack<Integer> queue;
+    private final Stack<Integer> reverse;
 
     public E232QueueViaStacks() {
         stack = new Stack<>();
-        queue = new Stack<>();
+        reverse = new Stack<>();
     }
 
     public void push(int x) {
@@ -16,26 +16,24 @@ public class E232QueueViaStacks {
     }
 
     public int pop() {
-        if (!queue.isEmpty()) {
-            return queue.pop();
+        if (reverse.isEmpty()) {
+            while (!stack.isEmpty()) {
+                reverse.push(stack.pop());
+            }
         }
-        while (!stack.isEmpty()) {
-            queue.push(stack.pop());
-        }
-        return queue.pop();
+        return reverse.pop();
     }
 
     public int peek() {
-        if (!queue.isEmpty()) {
-            return queue.peek();
+        if (reverse.isEmpty()) {
+            while (!stack.isEmpty()) {
+                reverse.push(stack.pop());
+            }
         }
-        while (!stack.isEmpty()) {
-            queue.push(stack.pop());
-        }
-        return queue.peek();
+        return reverse.peek();
     }
 
     public boolean empty() {
-        return stack.isEmpty() && queue.isEmpty();
+        return stack.isEmpty() && reverse.isEmpty();
     }
 }

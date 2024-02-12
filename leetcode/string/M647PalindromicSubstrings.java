@@ -5,18 +5,18 @@ public class M647PalindromicSubstrings {
     public int countSubstrings(String s) {
         int count = 0;
         for (int i = 0; i < s.length(); i++) {
-            count += findPalindromes(s, i, i);
-            count += findPalindromes(s, i, i + 1);
+            count += countPalindromes(s, i, i);
+            count += countPalindromes(s, i, i + 1);
         }
         return count;
     }
 
-    private int findPalindromes(String s, int start, int end) {
+    private int countPalindromes(String s, int left, int right) {
         int count = 0;
-        while (start >= 0 && end < s.length() && s.charAt(start) == s.charAt(end)) {
+        while (left >= 0 && right < s.length() && s.charAt(left) == s.charAt(right)) {
             count++;
-            start--;
-            end++;
+            left--;
+            right++;
         }
         return count;
     }

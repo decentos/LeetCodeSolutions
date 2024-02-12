@@ -6,19 +6,14 @@ public class M279PerfectSquares {
 
     public int numSquares(int n) {
         int[] dp = new int[n + 1];
-        Arrays.fill(dp, n + 1);
+        Arrays.fill(dp, Integer.MAX_VALUE);
         dp[0] = 0;
 
-        int max = (int) Math.sqrt(n);
-        int[] squares = new int[max + 1];
-        for (int i = 1; i < squares.length; i++) {
-            squares[i] = i * i;
-        }
-
         for (int i = 1; i <= n; i++) {
-            for (int square : squares) {
-                if (square > i) continue;
-                dp[i] = Math.min(dp[i], dp[i - square] + 1);
+            int j = 1;
+            while (j * j <= i) {
+                dp[i] = Math.min(dp[i], dp[i - j * j] + 1);
+                j++;
             }
         }
         return dp[n];

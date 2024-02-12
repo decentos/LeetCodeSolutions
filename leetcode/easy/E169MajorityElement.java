@@ -1,8 +1,5 @@
 package easy;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class E169MajorityElement {
 
     // Boyer-Moore Voting Algorithm

@@ -7,35 +7,28 @@ import java.util.Queue;
 public class M1642FurthestBuilding {
 
     public int furthestBuilding(int[] heights, int bricks, int ladders) {
-        Queue<Integer> heap = new PriorityQueue<>();
-        for (int i = 0; i < heights.length - 1; i++) {
+        int n = heights.length;
+        Queue<Integer> heap = new PriorityQueue<Integer>(Comparator.reverseOrder());
+
+        for (int i = 0; i < n - 1; i++) {
             int diff = heights[i + 1] - heights[i];
-            if (diff <= 0) continue;
+            if (diff <= 0) {
+                continue;
+            }
 
-            heap.offer(diff);
-            if (ladders >= heap.size()) continue;
-
-            bricks -= heap.poll();
-            if (bricks < 0) return i;
-        }
-        return heights.length - 1;
-    }
-
-    public int furthestBuilding2(int[] heights, int bricks, int ladders) {
-        Queue<Integer> heap = new PriorityQueue<>(Comparator.reverseOrder());
-        for (int i = 0; i < heights.length - 1; i++) {
-            int diff = heights[i + 1] - heights[i];
-            if (diff <= 0) continue;
-
-            heap.offer(diff);
-            bricks -= diff;
-            if (bricks < 0 && ladders == 0) return i;
-
-            if (bricks < 0) {
-                bricks += heap.poll();
+            if (bricks >= diff) {
+                bricks -= diff;
+                heap.offer(diff);
+            } else if (ladders > 0) {
                 ladders--;
+                if (!heap.isEmpty() && heap.peek() > diff) {
+                    bricks += heap.poll() - diff;
+                    heap.offer(diff);
+                }
+            } else {
+                return i;
             }
         }
-        return heights.length - 1;
+        return n - 1;
     }
 }

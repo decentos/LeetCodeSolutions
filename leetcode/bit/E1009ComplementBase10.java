@@ -1,4 +1,4 @@
-package easy;
+package bit;
 
 public class E1009ComplementBase10 {
 

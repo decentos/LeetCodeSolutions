@@ -1,4 +1,4 @@
-package easy;
+package bit;
 
 public class E191Number1Bits {
 

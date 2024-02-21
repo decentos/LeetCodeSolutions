@@ -1,4 +1,4 @@
-package easy;
+package bit;
 
 public class E338CountingBits {
 

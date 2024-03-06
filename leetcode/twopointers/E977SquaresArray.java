@@ -5,16 +5,17 @@ public class E977SquaresArray {
     public int[] sortedSquares(int[] nums) {
         int n = nums.length;
         int[] squares = new int[n];
-        int l = 0, r = n - 1;
+        int left = 0, right = n - 1;
 
-        for (int i = r; i >= 0; i--) {
-            int left = nums[l], right = nums[r];
-            if (Math.abs(left) > Math.abs(right)) {
-                squares[i] = left * left;
-                l++;
+        for (int i = n - 1; i >= 0; i--) {
+            int leftSqrt = nums[left] * nums[left];
+            int rightSqrt = nums[right] * nums[right];
+            if (leftSqrt > rightSqrt) {
+                squares[i] = leftSqrt;
+                left++;
             } else {
-                squares[i] = right * right;
-                r--;
+                squares[i] = rightSqrt;
+                right--;
             }
         }
         return squares;

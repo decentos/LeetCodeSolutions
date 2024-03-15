@@ -4,11 +4,9 @@ public class M238ProductArray {
 
     public int[] productExceptSelf(int[] nums) {
         int n = nums.length;
-        int[] ans = new int[n];
-
         int[] left = new int[n];
         left[0] = 1;
-        for (int i = 1; i < nums.length; i++) {
+        for (int i = 1; i < n; i++) {
             left[i] = left[i - 1] * nums[i - 1];
         }
 
@@ -19,8 +17,24 @@ public class M238ProductArray {
         }
 
         for (int i = 0; i < n; i++) {
-            ans[i] = left[i] * right[i];
+            nums[i] = left[i] * right[i];
         }
-        return ans;
+        return nums;
+    }
+
+    public int[] productExceptSelf2(int[] nums) {
+        int n = nums.length;
+        int[] product = new int[n];
+        product[0] = 1;
+        for (int i = 1; i < n; i++) {
+            product[i] = product[i - 1] * nums[i - 1];
+        }
+
+        int right = 1;
+        for (int i = n - 1; i >= 0; i--) {
+            product[i] *= right;
+            right *= nums[i];
+        }
+        return product;
     }
 }

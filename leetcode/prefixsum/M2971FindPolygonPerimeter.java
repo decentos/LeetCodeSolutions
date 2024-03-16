@@ -1,4 +1,4 @@
-package medium;
+package prefixsum;
 
 import java.util.Arrays;
 

@@ -1,4 +1,4 @@
-package string;
+package prefixsum;
 
 public class E1422MaxScoreAfterSplit {
 

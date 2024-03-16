@@ -1,4 +1,4 @@
-package medium;
+package prefixsum;
 
 public class M2256MinimumAverage {
 

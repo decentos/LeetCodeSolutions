@@ -1,4 +1,4 @@
-package easy;
+package prefixsum;
 
 public class E1480RunningSum {
 

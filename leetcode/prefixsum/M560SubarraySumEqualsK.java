@@ -1,4 +1,4 @@
-package medium;
+package prefixsum;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,4 +1,4 @@
-package easy;
+package greedy;
 
 public class E605CanPlaceFlowers {
 

@@ -1,4 +1,4 @@
-package medium;
+package greedy;
 
 public class M280WiggleSort {
 

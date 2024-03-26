@@ -2,9 +2,9 @@ package linkedlist;
 
 import util.ListNode;
 
-public class E234PalindromeList {
+public class M143ReorderList {
 
-    public boolean isPalindrome(ListNode head) {
+    public void reorderList(ListNode head) {
         ListNode slow = head;
         ListNode fast = slow;
         while (fast != null && fast.next != null) {
@@ -20,13 +20,15 @@ public class E234PalindromeList {
             slow = next;
         }
 
-        while (reversed != null) {
-            if (reversed.val != head.val) {
-                return false;
-            }
-            reversed = reversed.next;
-            head = head.next;
+        ListNode curr = head;
+        while (reversed.next != null) {
+            ListNode next = curr.next;
+            curr.next = reversed;
+            curr = next;
+
+            next = reversed.next;
+            reversed.next = curr;
+            reversed = next;
         }
-        return true;
     }
 }

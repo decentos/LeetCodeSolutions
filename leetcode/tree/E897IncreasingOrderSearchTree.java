@@ -6,8 +6,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class E897IncreasingOrderSearchTree {
+    private TreeNode curr;
 
     public TreeNode increasingBST(TreeNode root) {
+        TreeNode dummy = new TreeNode(0);
+        curr = dummy;
+        dfs(root);
+        return dummy.right;
+    }
+
+    private void dfs(TreeNode node) {
+        if (node == null) {
+            return;
+        }
+        dfs(node.left);
+        node.left = null;
+        curr.right = node;
+        curr = curr.right;
+        dfs(node.right);
+    }
+
+// ===============================================================================
+
+    public TreeNode increasingBST2(TreeNode root) {
         List<TreeNode> list = new ArrayList<>();
         dfs(root, list);
 

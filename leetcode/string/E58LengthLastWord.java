@@ -2,19 +2,16 @@ package string;
 
 public class E58LengthLastWord {
 
-    public static int lengthOfLastWord(String s) {
-        String trim = s.trim();
-        int afterLastSpaceIndex = trim.lastIndexOf(' ') + 1;
-        return trim.length() - afterLastSpaceIndex;
-    }
+    public int lengthOfLastWord(String s) {
+        int count = 0;
 
-    public int lengthOfLastWord2(String s) {
-        int index = s.length() - 1, length = 0;
-        while (index >= 0) {
-            if (s.charAt(index) != ' ') length++;
-            else if (length > 0) return length;
-            index--;
+        for (int i = s.length() - 1; i >= 0; i--) {
+            if (s.charAt(i) == ' ' && count > 0) {
+                break;
+            } else if (s.charAt(i) != ' ') {
+                count++;
+            }
         }
-        return length;
+        return count;
     }
 }

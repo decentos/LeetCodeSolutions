@@ -6,23 +6,27 @@ public class M79WordSearch {
         int m = board.length, n = board[0].length;
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
-                if (backtrack(board, word, 0, i, j)) return true;
+                if (backtrack(board, word, i, j, 0)) {
+                    return true;
+                }
             }
         }
         return false;
     }
 
-    private boolean backtrack(char[][] board, String word, int index, int row, int col) {
-        if (index >= word.length()) return true;
-        if (row < 0 || col < 0 || row == board.length || col == board[0].length) return false;
-        if (board[row][col] != word.charAt(index)) return false;
+    private boolean backtrack(char[][] board, String word, int col, int row, int index) {
+        if (index >= word.length()) {
+            return true;
+        } else if (col < 0 || row < 0 || col == board.length || row == board[0].length || board[col][row] != word.charAt(index)) {
+            return false;
+        }
 
-        board[row][col] = '#';
-        boolean exist = backtrack(board, word, index + 1, row + 1, col)
-                || backtrack(board, word, index + 1, row - 1, col)
-                || backtrack(board, word, index + 1, row, col + 1)
-                || backtrack(board, word, index + 1, row, col - 1);
-        board[row][col] = word.charAt(index);
-        return exist;
+        board[col][row] = '#';
+        boolean result = backtrack(board, word, col + 1, row, index + 1)
+                || backtrack(board, word, col - 1, row, index + 1)
+                || backtrack(board, word, col, row + 1, index + 1)
+                || backtrack(board, word, col, row - 1, index + 1);
+        board[col][row] = word.charAt(index);
+        return result;
     }
 }

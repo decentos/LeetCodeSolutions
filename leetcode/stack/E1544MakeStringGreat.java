@@ -6,7 +6,6 @@ public class E1544MakeStringGreat {
 
     public String makeGood(String s) {
         Stack<Character> stack = new Stack<>();
-
         for (char c : s.toCharArray()) {
             if (!stack.isEmpty() && Math.abs(c - stack.peek()) == 32) {
                 stack.pop();
@@ -15,8 +14,10 @@ public class E1544MakeStringGreat {
             }
         }
 
-        StringBuilder ans = new StringBuilder();
-        for (char c : stack) ans.append(c);
-        return ans.toString();
+        StringBuilder sb = new StringBuilder();
+        for (char c : stack) {
+            sb.append(c);
+        }
+        return sb.toString();
     }
 }

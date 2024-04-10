@@ -1,18 +1,11 @@
 package graph.unionfind;
 
-public class M547NumberProvinces {
+public class M323NumberConnectedComponents {
 
-    public int findCircleNum(int[][] isConnected) {
-        int n = isConnected.length;
+    public int countComponents(int n, int[][] edges) {
         UnionFind uf = new UnionFind(n);
-
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                if (i == j || isConnected[i][j] == 0) {
-                    continue;
-                }
-                uf.union(i, j);
-            }
+        for (int[] edge : edges) {
+            uf.union(edge[0], edge[1]);
         }
         return uf.getCount();
     }
@@ -22,12 +15,11 @@ public class M547NumberProvinces {
         private final int[] rank;
         private int count;
 
-        public UnionFind(int size) {
-            root = new int[size];
-            rank = new int[size];
-            count = size;
-
-            for (int i = 0; i < size; i++) {
+        public UnionFind(int n) {
+            root = new int[n];
+            rank = new int[n];
+            count = n;
+            for (int i = 0; i < n; i++) {
                 root[i] = i;
                 rank[i] = 1;
             }

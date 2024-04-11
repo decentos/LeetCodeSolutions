@@ -19,18 +19,17 @@ public class M1202SmallestStringSwaps {
             roots.computeIfAbsent(root, val -> new ArrayList<>()).add(i);
         }
 
-        roots.values().forEach(indices -> {
+        for (List<Integer> indices : roots.values()) {
             List<Character> letters = new ArrayList<>();
             for (int index : indices) {
                 letters.add(s.charAt(index));
             }
-
             Collections.sort(letters);
 
             for (int i = 0; i < letters.size(); i++) {
                 result[indices.get(i)] = letters.get(i);
             }
-        });
+        }
 
         return String.valueOf(result);
     }

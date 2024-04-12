@@ -1,35 +1,30 @@
 package graph;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class M797AllPaths {
-    private static final List<List<Integer>> allPaths = new ArrayList<>();
 
-    public static List<List<Integer>> allPathsSourceTarget(int[][] graph) {
-        Map<Integer, List<Integer>> edges = new HashMap<>();
-        for (int i = 0; i < graph.length; i++) {
-            for (int j = 0; j < graph[i].length; j++) {
-                edges.computeIfAbsent(i, val -> new ArrayList<>()).add(graph[i][j]);
-            }
-        }
-        helper(edges, new ArrayList<>(), 0, graph.length - 1);
-        return allPaths;
+    public List<List<Integer>> allPathsSourceTarget(int[][] graph) {
+        List<List<Integer>> paths = new ArrayList<>();
+        List<Integer> path = new ArrayList<>();
+
+        dfs(paths, path, graph, 0);
+
+        return paths;
     }
 
-    private static void helper(Map<Integer, List<Integer>> edges, List<Integer> curPaths, int source, int target) {
-        curPaths.add(source);
-        if (source == target) {
-            allPaths.add(curPaths);
+    private void dfs(List<List<Integer>> paths, List<Integer> path, int[][] graph, int curr) {
+        path.add(curr);
+
+        if (curr == graph.length - 1) {
+            paths.add(new ArrayList<>(path));
             return;
         }
 
-        List<Integer> nodes = edges.get(source);
-        if (nodes == null) return;
-        for (int node : nodes) {
-            helper(edges, new ArrayList<>(curPaths), node, target);
+        for (int node : graph[curr]) {
+            dfs(paths, path, graph, node);
+            path.removeLast();
         }
     }
 }

@@ -1,9 +1,6 @@
 package graph;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class E1971PathExistsGraph {
 
@@ -31,6 +28,40 @@ public class E1971PathExistsGraph {
         for (int neighbor : neighbors) {
             if (dfs(adj, visited, neighbor, destination)) {
                 return true;
+            }
+        }
+        return false;
+    }
+
+// ===============================================================================
+
+    public boolean validPath2(int n, int[][] edges, int source, int destination) {
+        Map<Integer, List<Integer>> adj = new HashMap<>();
+        boolean[] visited = new boolean[n];
+        visited[source] = true;
+        Deque<Integer> queue = new ArrayDeque<>();
+        queue.offer(source);
+
+        for (int[] edge : edges) {
+            adj.computeIfAbsent(edge[0], val -> new ArrayList<>()).add(edge[1]);
+            adj.computeIfAbsent(edge[1], val -> new ArrayList<>()).add(edge[0]);
+        }
+
+        while (!queue.isEmpty()) {
+            int curr = queue.poll();
+
+            if (curr == destination) {
+                return true;
+            }
+
+            if (adj.containsKey(curr)) {
+                List<Integer> neighbors = adj.get(curr);
+                for (int neighbor : neighbors) {
+                    if (!visited[neighbor]) {
+                        visited[neighbor] = true;
+                        queue.offer(neighbor);
+                    }
+                }
             }
         }
         return false;

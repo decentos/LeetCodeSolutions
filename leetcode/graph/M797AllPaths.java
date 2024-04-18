@@ -7,10 +7,7 @@ public class M797AllPaths {
 
     public List<List<Integer>> allPathsSourceTarget(int[][] graph) {
         List<List<Integer>> paths = new ArrayList<>();
-        List<Integer> path = new ArrayList<>();
-
-        dfs(paths, path, graph, 0);
-
+        dfs(paths, new ArrayList<>(), graph, 0);
         return paths;
     }
 

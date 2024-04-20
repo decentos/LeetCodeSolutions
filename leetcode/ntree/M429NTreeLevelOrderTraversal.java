@@ -2,33 +2,33 @@ package ntree;
 
 import util.NTreeNode;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 public class M429NTreeLevelOrderTraversal {
 
     public List<List<Integer>> levelOrder(NTreeNode root) {
-        if (root == null) return Collections.emptyList();
+        if (root == null) {
+            return Collections.emptyList();
+        }
 
-        List<List<Integer>> ans = new ArrayList<>();
-        Queue<NTreeNode> queue = new LinkedList<>();
+        List<List<Integer>> tree = new ArrayList<>();
+        Deque<NTreeNode> queue = new ArrayDeque<>();
         queue.offer(root);
 
         while (!queue.isEmpty()) {
             List<Integer> level = new ArrayList<>();
+            tree.add(level);
             int size = queue.size();
+
             for (int i = 0; i < size; i++) {
                 NTreeNode curr = queue.poll();
                 level.add(curr.val);
-                for (NTreeNode next : curr.children) {
-                    queue.offer(next);
+
+                for (NTreeNode child : curr.children) {
+                    queue.offer(child);
                 }
             }
-            ans.add(level);
         }
-        return ans;
+        return tree;
     }
 }

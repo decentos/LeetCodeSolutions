@@ -1,4 +1,4 @@
-package medium;
+package queue;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

@@ -1,30 +1,25 @@
-package graph.unionfind.kruskals;
+package graph.kruskal;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class M1584MinCostConnectPoints {
+public class H1168OptimizeWaterDistribution {
 
-    public int minCostConnectPoints(int[][] points) {
-        int n = points.length;
+    public int minCostToSupplyWater(int n, int[] wells, int[][] pipes) {
         int cost = 0;
         UnionFind uf = new UnionFind(n);
         List<Edge> edges = new ArrayList<>();
 
-        for (int from = 0; from < n; from++) {
-            for (int to = from + 1; to < n; to++) {
-                int weight = Math.abs(points[from][0] - points[to][0]) + Math.abs(points[from][1] - points[to][1]);
-                Edge edge = new Edge(from, to, weight);
-                edges.add(edge);
-            }
+        for (int i = 0; i < n; i++) {
+            edges.add(new Edge(0, i + 1, wells[i]));
+        }
+        for (int[] pipe : pipes) {
+            edges.add(new Edge(pipe[0], pipe[1], pipe[2]));
         }
         Collections.sort(edges);
 
         for (Edge edge : edges) {
-            if (uf.getCount() == 1) {
-                break;
-            }
             if (!uf.isConnected(edge.from, edge.to)) {
                 uf.union(edge.from, edge.to);
                 cost += edge.weight;
@@ -36,14 +31,12 @@ public class M1584MinCostConnectPoints {
     private static class UnionFind {
         private final int[] root;
         private final int[] rank;
-        private int count;
 
         public UnionFind(int size) {
-            root = new int[size];
-            rank = new int[size];
-            count = size;
+            root = new int[size + 1];
+            rank = new int[size + 1];
 
-            for (int i = 0; i < size; i++) {
+            for (int i = 0; i <= size; i++) {
                 root[i] = i;
                 rank[i] = 1;
             }
@@ -69,16 +62,11 @@ public class M1584MinCostConnectPoints {
                     root[rootY] = rootX;
                     rank[rootX]++;
                 }
-                count--;
             }
         }
 
         public boolean isConnected(int nodeX, int nodeY) {
             return find(nodeX) == find(nodeY);
-        }
-
-        private int getCount() {
-            return count;
         }
     }
 

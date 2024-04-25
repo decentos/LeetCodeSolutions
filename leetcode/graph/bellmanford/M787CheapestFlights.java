@@ -23,7 +23,8 @@ public class M787CheapestFlights {
                     curr[dist] = Math.min(curr[dist], prev[source] + price);
                 }
             }
-            prev = curr.clone();
+
+            System.arraycopy(curr, 0, prev, 0, n);
         }
         return curr[dst] == Integer.MAX_VALUE ? -1 : curr[dst];
     }

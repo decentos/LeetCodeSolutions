@@ -7,15 +7,15 @@ import java.util.Queue;
 public class M1962RemoveStones {
 
     public int minStoneSum(int[] piles, int k) {
-        Queue<Integer> queue = new PriorityQueue<>(Comparator.reverseOrder());
-        for (int i : piles) queue.offer(i);
+        Queue<Integer> heap = new PriorityQueue<>(Comparator.reverseOrder());
+        for (int i : piles) heap.offer(i);
 
-        while (!queue.isEmpty() && k > 0) {
-            int max = queue.poll();
+        while (!heap.isEmpty() && k > 0) {
+            int max = heap.poll();
             int floor = max / 2;
-            queue.offer(max - floor);
+            heap.offer(max - floor);
             k--;
         }
-        return queue.stream().reduce(Integer::sum).orElse(0);
+        return heap.stream().reduce(Integer::sum).orElse(0);
     }
 }

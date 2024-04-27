@@ -10,22 +10,22 @@ public class M743NetworkDelayTime {
         delays[0] = 0;
         delays[k] = 0;
 
-        Queue<Edge> queue = new PriorityQueue<>();
-        queue.offer(new Edge(k, 0));
+        Queue<Edge> heap = new PriorityQueue<>();
+        heap.offer(new Edge(k, 0));
 
         Map<Integer, List<Edge>> adj = new HashMap<>();
         for (int[] time : times) {
             adj.computeIfAbsent(time[0], val -> new ArrayList<>()).add(new Edge(time[1], time[2]));
         }
 
-        while (!queue.isEmpty()) {
-            Edge curr = queue.poll();
+        while (!heap.isEmpty()) {
+            Edge curr = heap.poll();
             if (adj.containsKey(curr.node)) {
                 List<Edge> neighbors = adj.get(curr.node);
                 for (Edge neighbor : neighbors) {
                     if (delays[neighbor.node] > curr.time + neighbor.time) {
                         delays[neighbor.node] = curr.time + neighbor.time;
-                        queue.offer(new Edge(neighbor.node, neighbor.time + curr.time));
+                        heap.offer(new Edge(neighbor.node, neighbor.time + curr.time));
                     }
                 }
             }

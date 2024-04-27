@@ -10,7 +10,7 @@ public class M1834SingleThreadedCPU {
 
     public static int[] getOrder(int[][] tasks) {
         int[] seq = new int[tasks.length];
-        Queue<int[]> queue = new PriorityQueue<>((a, b) -> a[0] != b[0] ? a[0] - b[0] : a[1] - b[1]);
+        Queue<int[]> heap = new PriorityQueue<>((a, b) -> a[0] != b[0] ? a[0] - b[0] : a[1] - b[1]);
         List<Process> list = new ArrayList<>();
         for (int i = 0; i < tasks.length; i++) {
             list.add(new Process(tasks[i][0], tasks[i][1], i));
@@ -21,16 +21,16 @@ public class M1834SingleThreadedCPU {
         while (seqIndex < seq.length) {
             while (listIndex < list.size() && time >= list.get(listIndex).startTime) {
                 Process next = list.get(listIndex);
-                queue.offer(new int[]{next.processTime, next.index});
+                heap.offer(new int[]{next.processTime, next.index});
                 listIndex++;
             }
 
-            if (queue.isEmpty()) {
+            if (heap.isEmpty()) {
                 time = list.get(listIndex).startTime;
                 continue;
             }
 
-            int[] cur = queue.poll();
+            int[] cur = heap.poll();
             seq[seqIndex] = cur[1];
             seqIndex++;
             time += cur[0];

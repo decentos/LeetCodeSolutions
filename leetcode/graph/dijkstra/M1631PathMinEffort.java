@@ -12,11 +12,11 @@ public class M1631PathMinEffort {
         int[][] dirs = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
         boolean[][] visited = new boolean[m][n];
 
-        Queue<int[]> pq = new PriorityQueue<>(Comparator.comparingInt(a -> a[2]));
-        pq.offer(new int[]{0, 0, 0});
+        Queue<int[]> heap = new PriorityQueue<>(Comparator.comparingInt(a -> a[2]));
+        heap.offer(new int[]{0, 0, 0});
 
-        while (!pq.isEmpty()) {
-            int[] curr = pq.poll();
+        while (!heap.isEmpty()) {
+            int[] curr = heap.poll();
             int row = curr[0];
             int col = curr[1];
             int currEffort = curr[2];
@@ -34,7 +34,7 @@ public class M1631PathMinEffort {
 
                 if (nextRow >= 0 && nextCol >= 0 && nextRow < m && nextCol < n && !visited[nextRow][nextCol]) {
                     int nextEffort = Math.abs(heights[nextRow][nextCol] - heights[row][col]);
-                    pq.offer(new int[]{nextRow, nextCol, nextEffort});
+                    heap.offer(new int[]{nextRow, nextCol, nextEffort});
                 }
             }
         }

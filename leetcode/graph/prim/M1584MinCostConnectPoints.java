@@ -10,11 +10,11 @@ public class M1584MinCostConnectPoints {
         int n = points.length;
         int cost = 0, count = n;
         boolean[] visited = new boolean[n];
-        Queue<int[]> queue = new PriorityQueue<>(Comparator.comparingInt(a -> a[1]));
-        queue.offer(new int[]{0, 0});
+        Queue<int[]> heap = new PriorityQueue<>(Comparator.comparingInt(a -> a[1]));
+        heap.offer(new int[]{0, 0});
 
         while (count != 0) {
-            int[] curr = queue.poll();
+            int[] curr = heap.poll();
             int currNode = curr[0];
             int currWeight = curr[1];
             if (!visited[currNode]) {
@@ -25,7 +25,7 @@ public class M1584MinCostConnectPoints {
                 for (int i = 0; i < n; i++) {
                     if (!visited[i]) {
                         int weight = Math.abs(points[currNode][0] - points[i][0]) + Math.abs(points[currNode][1] - points[i][1]);
-                        queue.offer(new int[]{i, weight});
+                        heap.offer(new int[]{i, weight});
                     }
                 }
             }

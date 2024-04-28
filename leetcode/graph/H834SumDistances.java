@@ -1,112 +1,47 @@
 package graph;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Queue;
+import java.util.*;
 
 public class H834SumDistances {
-    private static int sum = 0;
 
-    public static int[] sumOfDistancesInTree(int n, int[][] edges) {
-        if (n == 1) return new int[]{0};
-        Map<Integer, List<Integer>> graph = new HashMap<>();
-        for (int[] edge : edges) {
-            int a = edge[0], b = edge[1];
-            graph.computeIfAbsent(a, val -> new ArrayList<>()).add(b);
-            graph.computeIfAbsent(b, val -> new ArrayList<>()).add(a);
-        }
-        int[] sums = new int[n];
-
-        for (int i = 0; i < n; i++) {
-            boolean[] seen = new boolean[n];
-            sum = 0;
-            dfs(graph, seen, i, 1);
-            sums[i] = sum;
-        }
-        return sums;
-    }
-
-    private static void dfs(Map<Integer, List<Integer>> graph, boolean[] seen, int current, int level) {
-        seen[current] = true;
-        List<Integer> nodes = graph.get(current);
-        if (nodes != null) {
-            for (int node : nodes) {
-                if (!seen[node]) {
-                    sum += level;
-                    dfs(graph, seen, node, level + 1);
-                }
-            }
-        }
-    }
-
-    private static int bfs(Map<Integer, List<Integer>> graph, int n, int sourceNode) {
-        Queue<Integer> queue = new LinkedList<>();
-        queue.offer(sourceNode);
-
-        boolean[] visited = new boolean[n];
-        visited[sourceNode] = true;
-
-        int distance = 0, level = 0;
-
-        while (!queue.isEmpty()) {
-            int size = queue.size();
-            level += 1;
-
-            for (int i = 0; i < size; i++) {
-                int currNode = queue.poll();
-
-                for (int nextNode : graph.get(currNode)) {
-                    if (!visited[nextNode]) {
-                        visited[nextNode] = true;
-                        distance += level;
-                        queue.offer(nextNode);
-                    }
-                }
-            }
-        }
-        return distance;
-    }
-
-    private static Map<Integer, List<Integer>> graph;
-    private static int[] sums, count;
-    private static int size;
-
-    public static int[] sumOfDistancesInTree2(int n, int[][] edges) {
-        size = n;
-        sums = new int[n];
-        count = new int[n];
+    public int[] sumOfDistancesInTree(int n, int[][] edges) {
+        int[] sum = new int[n];
+        int[] count = new int[n];
         Arrays.fill(count, 1);
-        graph = new HashMap<>();
+
+        Map<Integer, List<Integer>> adj = new HashMap<>();
         for (int[] edge : edges) {
-            int a = edge[0], b = edge[1];
-            graph.computeIfAbsent(a, val -> new ArrayList<>()).add(b);
-            graph.computeIfAbsent(b, val -> new ArrayList<>()).add(a);
+            adj.computeIfAbsent(edge[0], val -> new ArrayList<>()).add(edge[1]);
+            adj.computeIfAbsent(edge[1], val -> new ArrayList<>()).add(edge[0]);
         }
-        postOrder(0, -1);
-        preOrder(0, -1);
-        return sums;
+
+        postOrder(sum, count, adj, 0, -1);
+        preOrder(sum, count, adj, n, 0, -1);
+        return sum;
     }
 
-    private static void postOrder(int node, int parent) {
-        if (!graph.containsKey(node)) return;
-        for (int child : graph.get(node))
-            if (child != parent) {
-                postOrder(child, node);
-                count[node] += count[child];
-                sums[node] += sums[child] + count[child];
+    private void postOrder(int[] sum, int[] count, Map<Integer, List<Integer>> adj, int node, int parent) {
+        if (adj.containsKey(node)) {
+            List<Integer> neighbors = adj.get(node);
+            for (int neighbor : neighbors) {
+                if (neighbor != parent) {
+                    postOrder(sum, count, adj, neighbor, node);
+                    count[node] += count[neighbor];
+                    sum[node] += sum[neighbor] + count[neighbor];
+                }
             }
+        }
     }
 
-    private static void preOrder(int node, int parent) {
-        if (!graph.containsKey(node)) return;
-        for (int child : graph.get(node))
-            if (child != parent) {
-                sums[child] = sums[node] - count[child] + size - count[child];
-                preOrder(child, node);
+    private void preOrder(int[] sum, int[] count, Map<Integer, List<Integer>> adj, int size, int node, int parent) {
+        if (adj.containsKey(node)) {
+            List<Integer> neighbors = adj.get(node);
+            for (int neighbor : neighbors) {
+                if (neighbor != parent) {
+                    sum[neighbor] = sum[node] - count[neighbor] + size - count[neighbor];
+                    preOrder(sum, count, adj, size, neighbor, node);
+                }
             }
+        }
     }
 }

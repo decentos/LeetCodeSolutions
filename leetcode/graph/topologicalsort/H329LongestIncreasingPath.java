@@ -16,7 +16,7 @@ public class H329LongestIncreasingPath {
                     int nextRow = row + dir[0];
                     int nextCol = col + dir[1];
 
-                    if (nextRow >= 0 && nextRow < m && nextCol >= 0 && nextCol < n && matrix[row][col] < matrix[nextRow][nextCol]) {
+                    if (isGreater(matrix, row, col, nextRow, nextCol)) {
                         inDegree[nextRow][nextCol]++;
                     }
                 }
@@ -46,7 +46,7 @@ public class H329LongestIncreasingPath {
                     int nextRow = row + dir[0];
                     int nextCol = col + dir[1];
 
-                    if (nextRow >= 0 && nextRow < m && nextCol >= 0 && nextCol < n && matrix[row][col] < matrix[nextRow][nextCol]) {
+                    if (isGreater(matrix, row, col, nextRow, nextCol)) {
                         inDegree[nextRow][nextCol]--;
 
                         if (inDegree[nextRow][nextCol] == 0) {
@@ -57,5 +57,9 @@ public class H329LongestIncreasingPath {
             }
         }
         return height;
+    }
+
+    private boolean isGreater(int[][] matrix, int row, int col, int nextRow, int nextCol) {
+        return nextRow >= 0 && nextRow < matrix.length && nextCol >= 0 && nextCol < matrix[0].length && matrix[nextRow][nextCol] > matrix[row][col];
     }
 }

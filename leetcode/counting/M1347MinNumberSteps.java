@@ -1,4 +1,4 @@
-package medium;
+package counting;
 
 public class M1347MinNumberSteps {
 

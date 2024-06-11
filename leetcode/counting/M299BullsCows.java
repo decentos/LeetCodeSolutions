@@ -1,4 +1,4 @@
-package medium;
+package counting;
 
 import java.util.HashMap;
 import java.util.Map;

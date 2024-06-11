@@ -1,4 +1,4 @@
-package easy;
+package counting;
 
 public class E1897RedistributeChars {
 

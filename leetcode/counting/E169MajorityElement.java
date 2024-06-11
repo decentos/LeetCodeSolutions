@@ -1,4 +1,4 @@
-package easy;
+package counting;
 
 public class E169MajorityElement {
 

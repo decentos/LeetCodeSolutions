@@ -3,15 +3,20 @@ package greedy;
 public class E605CanPlaceFlowers {
 
     public boolean canPlaceFlowers(int[] flowerbed, int n) {
-        int m = flowerbed.length;
-        for (int i = 0; i < m; i++) {
-            if (n == 0) break;
-            if (flowerbed[i] == 1) continue;
+        int len = flowerbed.length;
 
-            boolean emptyLeft = i == 0 || flowerbed[i - 1] == 0;
-            boolean emptyRight = i== m - 1 || flowerbed[i + 1] == 0;
+        for (int i = 0; i < len; i++) {
+            if (n == 0) {
+                break;
+            }
+            if (flowerbed[i] == 1) {
+                continue;
+            }
 
-            if (emptyLeft && emptyRight) {
+            boolean isEmptyLeft = i == 0 || flowerbed[i - 1] == 0;
+            boolean isEmptyRight = i == len - 1 || flowerbed[i + 1] == 0;
+
+            if (isEmptyLeft && isEmptyRight) {
                 flowerbed[i] = 1;
                 n--;
             }

@@ -3,16 +3,12 @@ package string;
 public class M151ReverseWords {
 
     public String reverseWords(String s) {
-        s = s.trim();
-        String[] arr = s.split("\\s+");
-        int l = 0, r = arr.length - 1;
-        while (l < r) {
-            String temp = arr[l];
-            arr[l] = arr[r];
-            arr[r] = temp;
-            l++;
-            r--;
+        String[] splitted = s.trim().split("\\s+");
+        StringBuilder reversed = new StringBuilder();
+
+        for (int i = splitted.length - 1; i >= 0; i--) {
+            reversed.append(splitted[i]).append(" ");
         }
-        return String.join(" ", arr);
+        return reversed.toString().trim();
     }
 }

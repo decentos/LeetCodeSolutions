@@ -4,24 +4,27 @@ public class M443StringCompression {
 
     public int compress(char[] chars) {
         int n = chars.length;
-        int insertedIndex = 0, index = 0;
+        int index = 0, insertIndex = 0;
 
         while (index < n) {
-            char curr = chars[index];
-            int count = 0;
+            char curr = chars[index++];
+            int repeat = 1;
+
             while (index < n && chars[index] == curr) {
-                count++;
                 index++;
+                repeat++;
             }
 
-            chars[insertedIndex++] = curr;
-            if (count > 1) {
-                char[] temp = String.valueOf(count).toCharArray();
-                for (char c : temp) {
-                    chars[insertedIndex++] = c;
+            chars[insertIndex++] = curr;
+            if (repeat > 1 && repeat < 10) {
+                chars[insertIndex++] = Character.forDigit(repeat, 10);
+            } else if (repeat >= 10) {
+                String repeatStr = String.valueOf(repeat);
+                for (char digit : repeatStr.toCharArray()) {
+                    chars[insertIndex++] = digit;
                 }
             }
         }
-        return insertedIndex;
+        return insertIndex;
     }
 }

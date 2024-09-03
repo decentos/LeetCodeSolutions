@@ -3,27 +3,17 @@ package twopointers;
 public class E283MoveZeroes {
 
     public void moveZeroes(int[] nums) {
-        int zero = -1;
-        for (int i = 0; i < nums.length; i++) {
-            if (zero == -1 && nums[i] == 0) {
-                zero = i;
-            } else if (zero != -1 && nums[i] != 0) {
-                nums[zero] = nums[i];
-                nums[i] = 0;
-                zero++;
+        int n = nums.length;
+        int insertIndex = 0;
+
+        for (int i = 0; i < n; i++) {
+            if (nums[i] != 0) {
+                nums[insertIndex++] = nums[i];
             }
         }
-    }
 
-    public void moveZeroes2(int[] nums) {
-        int zeroIndex = 0;
-        for (int i = 0; i < nums.length; i++) {
-            if (nums[i] != 0) {
-                int zero = nums[zeroIndex];
-                nums[zeroIndex] = nums[i];
-                nums[i] = zero;
-                zeroIndex++;
-            }
+        for (int i = insertIndex; i < n; i++) {
+            nums[i] = 0;
         }
     }
 }

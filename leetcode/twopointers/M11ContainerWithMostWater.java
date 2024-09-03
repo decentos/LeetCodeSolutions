@@ -3,19 +3,19 @@ package twopointers;
 public class M11ContainerWithMostWater {
 
     public int maxArea(int[] height) {
+        int maxArea = 0;
         int left = 0, right = height.length - 1;
-        int max = 0;
 
-        while (left <= right) {
-            int leftHeight = height[left];
-            int rightHeight = height[right];
-            int width = right - left;
-            int area = width * Math.min(leftHeight, rightHeight);
-            max = Math.max(max, area);
+        while (left < right) {
+            int area = Math.min(height[left], height[right]) * (right - left);
+            maxArea = Math.max(maxArea, area);
 
-            if (leftHeight > rightHeight) right--;
-            else left++;
+            if (height[left] < height[right]) {
+                left++;
+            } else {
+                right--;
+            }
         }
-        return max;
+        return maxArea;
     }
 }

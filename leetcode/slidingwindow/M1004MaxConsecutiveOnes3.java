@@ -3,10 +3,12 @@ package slidingwindow;
 public class M1004MaxConsecutiveOnes3 {
 
     public int longestOnes(int[] nums, int k) {
-        int subCount = 0, zeroCount = 0;
-        int left = 0, right = 0;
-        while (right < nums.length) {
-            if (nums[right] == 0) zeroCount++;
+        int max = 0, zeroCount = 0, left = 0;
+
+        for (int right = 0; right < nums.length; right++) {
+            if (nums[right] == 0) {
+                zeroCount++;
+            }
 
             while (zeroCount > k) {
                 if (nums[left] == 0) {
@@ -14,22 +16,9 @@ public class M1004MaxConsecutiveOnes3 {
                 }
                 left++;
             }
-            subCount = Math.max(subCount, right - left + 1);
-            right++;
-        }
-        return subCount;
-    }
 
-    public int longestOnes2(int[] nums, int k) {
-        int left = 0, right;
-        for (right = 0; right < nums.length; right++) {
-            if (nums[right] == 0) k--;
-
-            if (k < 0) {
-                k += 1 - nums[left];
-                left++;
-            }
+            max = Math.max(max, right - left + 1);
         }
-        return right - left;
+        return max;
     }
 }

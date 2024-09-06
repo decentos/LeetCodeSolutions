@@ -3,12 +3,17 @@ package prefixsum;
 public class E724PivotIndex {
 
     public int pivotIndex(int[] nums) {
-        int leftSum = 0, sum = 0;
-        for (int i : nums) {
-            sum += i;
+        int sum = 0;
+        for (int num : nums) {
+            sum += num;
         }
+
+        int leftSum = 0;
         for (int i = 0; i < nums.length; i++) {
-            if (leftSum == sum - leftSum - nums[i]) return i;
+            sum -= nums[i];
+            if (leftSum == sum) {
+                return i;
+            }
             leftSum += nums[i];
         }
         return -1;

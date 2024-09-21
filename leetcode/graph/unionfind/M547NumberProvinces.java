@@ -8,10 +8,9 @@ public class M547NumberProvinces {
 
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
-                if (i == j || isConnected[i][j] == 0) {
-                    continue;
+                if (isConnected[i][j] == 1) {
+                    uf.union(i, j);
                 }
-                uf.union(i, j);
             }
         }
         return uf.getCount();

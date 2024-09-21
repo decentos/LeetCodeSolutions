@@ -1,28 +1,30 @@
 package graph;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.List;
-import java.util.Stack;
 
 public class M841KeysRooms {
 
-    public static boolean canVisitAllRooms(List<List<Integer>> rooms) {
-        boolean[] seen = new boolean[rooms.size()];
-        seen[0] = true;
-        Stack<Integer> stack = new Stack<>();
-        stack.push(0);
+    public boolean canVisitAllRooms(List<List<Integer>> rooms) {
+        boolean[] openedRooms = new boolean[rooms.size()];
+        Deque<Integer> keys = new ArrayDeque<>();
+        keys.offer(0);
 
-        while (!stack.empty()) {
-            int roomId = stack.pop();
-            List<Integer> room = rooms.get(roomId);
-            for (int key : room) {
-                if (!seen[key]) {
-                    seen[key] = true;
-                    stack.push(key);
+        while (!keys.isEmpty()) {
+            int key = keys.poll();
+            openedRooms[key] = true;
+            for (int nextKey : rooms.get(key)) {
+                if (!openedRooms[nextKey]) {
+                    keys.offer(nextKey);
                 }
             }
         }
-        for (boolean open : seen) {
-            if (!open) return false;
+
+        for (boolean openedRoom : openedRooms) {
+            if (!openedRoom) {
+                return false;
+            }
         }
         return true;
     }

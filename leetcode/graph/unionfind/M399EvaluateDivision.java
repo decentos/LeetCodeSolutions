@@ -6,61 +6,55 @@ public class M399EvaluateDivision {
 
     public double[] calcEquation(List<List<String>> equations, double[] values, List<List<String>> queries) {
         double[] result = new double[queries.size()];
-        UnionFind uf = new UnionFind(equations.size() * 2);
-        Map<String, Integer> stringToNode = new HashMap<>();
-        int stringToNodeIndex = 0;
+        UnionFind graph = new UnionFind(equations.size() * 2);
+        Map<String, Integer> toIndexMap = new HashMap<>();
+        int nodeIndex = 0;
         Map<Integer, List<Calculation>> adj = new HashMap<>();
 
         for (int i = 0; i < equations.size(); i++) {
-            List<String> equation = equations.get(i);
-            String dividend = equation.get(0);
-            String divisor = equation.get(1);
-            double value = values[i];
-            double revertValue = 1 / values[i];
+            String divisor = equations.get(i).get(0);
+            String divider = equations.get(i).get(1);
 
-            stringToNode.putIfAbsent(dividend, stringToNodeIndex++);
-            stringToNode.putIfAbsent(divisor, stringToNodeIndex++);
+            toIndexMap.putIfAbsent(divisor, nodeIndex++);
+            toIndexMap.putIfAbsent(divider, nodeIndex++);
 
-            uf.union(stringToNode.get(dividend), stringToNode.get(divisor));
+            int divisorIndex = toIndexMap.get(divisor);
+            int dividerIndex = toIndexMap.get(divider);
 
-            adj.computeIfAbsent(stringToNode.get(dividend), val -> new ArrayList<>()).add(new Calculation(stringToNode.get(divisor), value));
-            adj.computeIfAbsent(stringToNode.get(divisor), val -> new ArrayList<>()).add(new Calculation(stringToNode.get(dividend), revertValue));
+            graph.union(divisorIndex, dividerIndex);
+            adj.computeIfAbsent(divisorIndex, val -> new ArrayList<>()).add(new Calculation(dividerIndex, values[i]));
+            adj.computeIfAbsent(dividerIndex, val -> new ArrayList<>()).add(new Calculation(divisorIndex, 1 / values[i]));
         }
 
         for (int i = 0; i < queries.size(); i++) {
-            List<String> query = queries.get(i);
-            String dividend = query.get(0);
-            String divisor = query.get(1);
-
-            if (!stringToNode.containsKey(dividend) || !stringToNode.containsKey(divisor) || !uf.isConnected(stringToNode.get(dividend), stringToNode.get(divisor))) {
+            String divisor = queries.get(i).get(0);
+            String divider = queries.get(i).get(1);
+            int divisorIndex = toIndexMap.getOrDefault(divisor, -1);
+            int dividerIndex = toIndexMap.getOrDefault(divider, -1);
+            if (divisorIndex == -1 || dividerIndex == -1 || !graph.isConnected(divisorIndex, dividerIndex)) {
                 result[i] = -1.0;
-            } else if (dividend.equals(divisor)) {
+            } else if (divisorIndex == dividerIndex) {
                 result[i] = 1.0;
             } else {
-                int nodeFirst = stringToNode.get(dividend);
-                int nodeSecond = stringToNode.get(divisor);
+                Deque<Calculation> queue = new ArrayDeque<>();
+                queue.offer(new Calculation(divisorIndex, 1.0));
 
                 boolean[] visited = new boolean[equations.size() * 2];
-                visited[nodeFirst] = true;
-
-                Deque<Calculation> queue = new ArrayDeque<>();
-                queue.offer(new Calculation(nodeFirst, 1.0));
+                visited[divisorIndex] = true;
 
                 while (!queue.isEmpty()) {
                     Calculation curr = queue.poll();
 
-                    if (curr.node == nodeSecond) {
+                    if (curr.node == dividerIndex) {
                         result[i] = curr.amount;
                         break;
                     }
 
-                    if (adj.containsKey(curr.node)) {
-                        List<Calculation> neighbors = adj.get(curr.node);
-                        for (Calculation neighbor : neighbors) {
-                            if (!visited[neighbor.node]) {
-                                visited[neighbor.node] = true;
-                                queue.offer(new Calculation(neighbor.node, curr.amount * neighbor.amount));
-                            }
+                    List<Calculation> neighbors = adj.get(curr.node);
+                    for (Calculation neighbor : neighbors) {
+                        if (!visited[neighbor.node]) {
+                            visited[neighbor.node] = true;
+                            queue.offer(new Calculation(neighbor.node, curr.amount * neighbor.amount));
                         }
                     }
                 }
@@ -111,13 +105,5 @@ public class M399EvaluateDivision {
         }
     }
 
-    private static class Calculation {
-        int node;
-        double amount;
-
-        public Calculation(int node, double amount) {
-            this.node = node;
-            this.amount = amount;
-        }
-    }
+    private record Calculation(int node, double amount) {}
 }

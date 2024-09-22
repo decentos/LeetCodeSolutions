@@ -1,10 +1,12 @@
 package dp;
 
+import tree.trie.M139WordBreakTrie;
+
 import java.util.List;
 import java.util.Set;
 
 /**
- * Trie solution {@link trie.M139WordBreakTrie}
+ * Trie solution {@link M139WordBreakTrie}
  */
 public class M139WordBreakDP {
 

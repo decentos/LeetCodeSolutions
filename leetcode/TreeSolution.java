@@ -1,4 +1,4 @@
-import tree.M536ConstructTreeFromString;
+import tree.binary.M536ConstructTreeFromString;
 
 public class TreeSolution {
     public static void main(String[] args) {

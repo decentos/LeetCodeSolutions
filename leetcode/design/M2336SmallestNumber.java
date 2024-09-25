@@ -1,30 +1,28 @@
 package design;
 
-import java.util.TreeSet;
+import java.util.PriorityQueue;
+import java.util.Queue;
 
 public class M2336SmallestNumber {
-    private final TreeSet<Integer> set;
-    private int current;
+    private final Queue<Integer> heap;
+    private int min;
 
     public M2336SmallestNumber() {
-        set = new TreeSet<>();
-        current = 1;
+        heap = new PriorityQueue<>();
+        min = 1;
     }
 
     public int popSmallest() {
-        int smallest;
-        if (set.isEmpty()) {
-            smallest = current;
-            current++;
-        } else {
-            smallest = set.first();
-            set.remove(smallest);
+        if (!heap.isEmpty()) {
+            return heap.poll();
         }
-        return smallest;
+        min++;
+        return min - 1;
     }
 
     public void addBack(int num) {
-        if (num >= current || set.contains(num)) return;
-        set.add(num);
+        if (min > num && !heap.contains(num)) {
+            heap.offer(num);
+        }
     }
 }

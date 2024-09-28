@@ -1,31 +1,38 @@
 package binarysearch;
 
+import java.util.List;
+import java.util.Map;
+
 public class M162FindPeak {
 
-    public static int findPeakElement(int[] nums) {
-        if (nums.length == 1) return 0;
-        int low = 0, high = nums.length - 1;
+    public int findPeakElement(int[] nums) {
+        int left = 0, right = nums.length - 1;
+        while (left <= right) {
+            int mid = (left + right) / 2;
 
-        while (low <= high) {
-            int mid = (low + high) / 2;
-            int cur = nums[mid];
-            if ((mid - 1 == -1 || cur > nums[mid - 1])
-                    && (mid + 1 == nums.length || cur > nums[mid + 1])) return mid;
-            else if (mid + 1 < nums.length && cur < nums[mid + 1]) low = mid + 1;
-            else high = mid;
+            if (isPeak(mid, nums)) {
+                return mid;
+            } else if (mid > 0 && nums[mid - 1] > nums[mid]) {
+                right = mid - 1;
+            } else {
+                left = mid + 1;
+            }
         }
         return -1;
     }
 
-    public int findPeakElement2(int[] nums) {
-        int l = 0, r = nums.length - 1;
-        while (l < r) {
-            int mid = (l + r) / 2;
-            if (nums[mid] > nums[mid + 1])
-                r = mid;
-            else
-                l = mid + 1;
-        }
-        return l;
+    private boolean isPeak(int index, int[] nums) {
+        return (index == 0 || nums[index] > nums[index - 1]) && (index == nums.length - 1 || nums[index] > nums[index + 1]);
     }
+
+    private static final Map<Character, List<Character>> numToLettersMap = Map.of(
+            '2', List.of('a', 'b', 'c'),
+            '3', List.of('d', 'e', 'f'),
+            '4', List.of('g', 'h', 'i'),
+            '5', List.of('j', 'k', 'l'),
+            '6', List.of('m', 'n', 'o'),
+            '7', List.of('p', 'q', 'r', 's'),
+            '8', List.of('t', 'u', 'v'),
+            '9', List.of('w', 'x', 'y', 'z')
+    );
 }

@@ -1,51 +1,53 @@
 package tree.trie;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class M208ImplementTrie {
-    private boolean isFullWord;
-    private final Map<Character, M208ImplementTrie> map;
+    private final TrieNode root;
 
     public M208ImplementTrie() {
-        map = new HashMap<>();
-        isFullWord = false;
+        root = new TrieNode();
     }
 
     public void insert(String word) {
-        M208ImplementTrie curr = this;
+        TrieNode node = root;
         for (char c : word.toCharArray()) {
-            Map<Character, M208ImplementTrie> currMap = curr.map;
-            if (!currMap.containsKey(c)) {
-                currMap.put(c, new M208ImplementTrie());
+            TrieNode[] children = node.children;
+            if (children[c - 'a'] == null) {
+                children[c - 'a'] = new TrieNode();
             }
-            curr = currMap.get(c);
+            node = children[c - 'a'];
         }
-        curr.isFullWord = true;
+        node.isWord = true;
     }
 
     public boolean search(String word) {
-        M208ImplementTrie curr = this;
-        for (char c : word.toCharArray()) {
-            Map<Character, M208ImplementTrie> currMap = curr.map;
-            if (currMap.containsKey(c)) {
-                curr = currMap.get(c);
-            } else {
-                return false;
-            }
-        }
-        return curr.isFullWord;
+        TrieNode node = searchPrefix(word);
+        return node != null && node.isWord;
     }
 
     public boolean startsWith(String prefix) {
-        Map<Character, M208ImplementTrie> curr = map;
+        TrieNode node = searchPrefix(prefix);
+        return node != null;
+    }
+
+    private TrieNode searchPrefix(String prefix) {
+        TrieNode node = root;
         for (char c : prefix.toCharArray()) {
-            if (curr.containsKey(c)) {
-                curr = curr.get(c).map;
-            } else {
-                return false;
+            TrieNode[] children = node.children;
+            if (children[c - 'a'] == null) {
+                return null;
             }
+            node = children[c - 'a'];
         }
-        return true;
+        return node;
+    }
+
+    private static class TrieNode {
+        boolean isWord;
+        TrieNode[] children;
+
+        public TrieNode() {
+            isWord = false;
+            children = new TrieNode[26];
+        }
     }
 }

@@ -2,14 +2,14 @@ package dp;
 
 public class M55JumpGame {
     public boolean canJump(int[] nums) {
-        int n = nums.length;
-        int last = n - 1;
+        int maxIndex = 0;
 
-        for (int i = last - 1; i >= 0; i--) {
-            if (nums[i] + i >= last) {
-                last = i;
+        for (int i = 0; i < nums.length; i++) {
+            if (maxIndex < i) {
+                return false;
             }
+            maxIndex = Math.max(maxIndex, i + nums[i]);
         }
-        return last == 0;
+        return true;
     }
 }

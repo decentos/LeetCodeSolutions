@@ -3,13 +3,13 @@ package design;
 import java.util.*;
 
 public class M380InsertDeleteGetRandom {
-    private final List<Integer> list;
     private final Map<Integer, Integer> map;
+    private final List<Integer> list;
     private final Random random;
 
     public M380InsertDeleteGetRandom() {
-        list = new ArrayList<>();
         map = new HashMap<>();
+        list = new ArrayList<>();
         random = new Random();
     }
 
@@ -26,11 +26,12 @@ public class M380InsertDeleteGetRandom {
         if (!map.containsKey(val)) {
             return false;
         }
-        int index = map.get(val);
-        int last = list.get(list.size() - 1);
-        list.set(index, last);
-        map.replace(last, index);
-        list.remove(list.size() - 1);
+        int replaceIndex = map.get(val);
+        int lastIndex = list.size() - 1;
+        int lastElement = list.get(lastIndex);
+        list.set(replaceIndex, lastElement);
+        list.remove(lastIndex);
+        map.replace(lastElement, replaceIndex);
         map.remove(val);
         return true;
     }

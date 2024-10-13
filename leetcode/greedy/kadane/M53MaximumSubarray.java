@@ -1,4 +1,4 @@
-package dp;
+package greedy.kadane;
 
 public class M53MaximumSubarray {
 

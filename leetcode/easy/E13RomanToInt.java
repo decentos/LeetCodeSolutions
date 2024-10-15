@@ -5,29 +5,28 @@ import java.util.Map;
 public class E13RomanToInt {
 
     public int romanToInt(String s) {
-        int n = s.length(), arabic = 0, index = 0;
+        int n = s.length(), index = 0;
+        int converted = 0;
 
-        while (index < n) {
-            if (index < n - 1) {
-                int curr = roman.get(s.charAt(index));
-                int next = roman.get(s.charAt(index + 1));
-
-                if (next > curr) {
-                    arabic += next - curr;
-                    index += 2;
-                } else {
-                    arabic += curr;
-                    index++;
-                }
+        while (index < n - 1) {
+            int curr = romanToInt.get(s.charAt(index));
+            int next = romanToInt.get(s.charAt(index + 1));
+            if (curr < next) {
+                converted += next - curr;
+                index += 2;
             } else {
-                arabic += roman.get(s.charAt(index));
+                converted += curr;
                 index++;
             }
         }
-        return arabic;
+
+        if (index < n) {
+            converted += romanToInt.get(s.charAt(index));
+        }
+        return converted;
     }
 
-    private static final Map<Character, Integer> roman = Map.of(
+    private final Map<Character, Integer> romanToInt = Map.of(
             'I', 1,
             'V', 5,
             'X', 10,

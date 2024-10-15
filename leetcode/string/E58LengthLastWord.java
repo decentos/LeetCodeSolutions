@@ -3,15 +3,17 @@ package string;
 public class E58LengthLastWord {
 
     public int lengthOfLastWord(String s) {
-        int count = 0;
+        int lenght = 0;
+        int index = s.length() - 1;
 
-        for (int i = s.length() - 1; i >= 0; i--) {
-            if (s.charAt(i) == ' ' && count > 0) {
-                break;
-            } else if (s.charAt(i) != ' ') {
-                count++;
-            }
+        while (index >= 0 && s.charAt(index) == ' ') {
+            index--;
         }
-        return count;
+
+        while (index >= 0 && s.charAt(index) != ' ') {
+            index--;
+            lenght++;
+        }
+        return lenght;
     }
 }

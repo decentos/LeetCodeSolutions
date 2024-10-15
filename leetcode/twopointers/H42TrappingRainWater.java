@@ -3,26 +3,22 @@ package twopointers;
 public class H42TrappingRainWater {
 
     public int trap(int[] height) {
-        int left = 0, right = height.length - 1;
-        int leftMax = 0, rightMax = 0;
-        int water = 0;
+        int count = 0;
+        int left = 0, leftMax = 0;
+        int right = height.length - 1, rightMax = 0;
 
         while (left < right) {
-            if (height[left] > leftMax) {
-                leftMax = height[left];
-            }
-            if (height[right] > rightMax) {
-                rightMax = height[right];
-            }
+            leftMax = Math.max(leftMax, height[left]);
+            rightMax = Math.max(rightMax, height[right]);
 
-            if (leftMax < rightMax) {
-                water += leftMax - height[left];
+            if (leftMax <= rightMax) {
+                count += leftMax - height[left];
                 left++;
             } else {
-                water += rightMax - height[right];
+                count += rightMax - height[right];
                 right--;
             }
         }
-        return water;
+        return count;
     }
 }

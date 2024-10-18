@@ -11,36 +11,37 @@ import java.util.Set;
 public class M15ThreeSum {
 
     public List<List<Integer>> threeSum(int[] nums) {
-        List<List<Integer>> ans = new ArrayList<>();
         Arrays.sort(nums);
+        List<List<Integer>> ans = new ArrayList<>();
+        int n = nums.length;
 
-        for (int i = 0; i < nums.length - 2; i++) {
-            if (i > 0 && nums[i - 1] == nums[i]) continue;
-            sum(ans, nums, i);
+        for (int i = 0; i < n - 2; i++) {
+            if (i > 0 && nums[i] == nums[i - 1]) {
+                continue;
+            }
+            int left = i + 1, right = n - 1;
+
+            while (left < right) {
+                int sum = nums[i] + nums[left] + nums[right];
+
+                if (sum == 0) {
+                    ans.add(List.of(nums[i], nums[left], nums[right]));
+                    left++;
+                    right--;
+                    while (left < right && nums[left] == nums[left - 1]) {
+                        left++;
+                    }
+                } else if (sum > 0) {
+                    right--;
+                } else {
+                    left++;
+                }
+            }
         }
         return ans;
     }
 
-    private void sum(List<List<Integer>> ans, int[] nums, int index) {
-        int curr = nums[index], left = index + 1, right = nums.length - 1;
-
-        while (left < right) {
-            int sum = curr + nums[left] + nums[right];
-
-            if (sum == 0) {
-                ans.add(List.of(curr, nums[left], nums[right]));
-                left++;
-                right--;
-
-                while (left < right && nums[left - 1] == nums[left]) left++;
-                while (left < right && nums[right + 1] == nums[right]) right--;
-            } else if (sum < 0) {
-                left++;
-            } else {
-                right--;
-            }
-        }
-    }
+// ===============================================================================
 
     public List<List<Integer>> threeSum2(int[] nums) {
         int n = nums.length;

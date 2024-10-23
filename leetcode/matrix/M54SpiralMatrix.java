@@ -6,35 +6,44 @@ import java.util.List;
 public class M54SpiralMatrix {
 
     public List<Integer> spiralOrder(int[][] matrix) {
-        List<Integer> result = new ArrayList<>();
-        int n = matrix.length, m = matrix[0].length;
-        int left = 0, up = 0, right = m - 1, down = n - 1;
-        while (result.size() < n * m) {
-            for (int row = left; row <= right; row++) {
-                result.add(matrix[up][row]);
-            }
+        int m = matrix.length, n = matrix[0].length;
+        List<Integer> spiral = new ArrayList<>();
+        int row = 0, col = 0;
 
-            for (int col = up + 1; col <= down; col++) {
-                result.add(matrix[col][right]);
+        while (spiral.size() < m * n) {
+            while (col < n && matrix[row][col] != 101) {
+                spiral.add(matrix[row][col]);
+                matrix[row][col] = 101;
+                col++;
             }
+            col--;
+            row++;
 
-            if (up != down) {
-                for (int row = right - 1; row >= left; row--) {
-                    result.add(matrix[down][row]);
-                }
+            while (row < m && matrix[row][col] != 101) {
+                spiral.add(matrix[row][col]);
+                matrix[row][col] = 101;
+                row++;
             }
+            row--;
+            col--;
 
-            if (left != right) {
-                for (int col = down - 1; col > up; col--) {
-                    result.add(matrix[col][left]);
-                }
+            while (col >= 0 && matrix[row][col] != 101) {
+                spiral.add(matrix[row][col]);
+                matrix[row][col] = 101;
+                col--;
             }
+            col++;
+            row--;
 
-            left++;
-            right--;
-            up++;
-            down--;
+            while (row >= 0 && matrix[row][col] != 101) {
+                spiral.add(matrix[row][col]);
+                matrix[row][col] = 101;
+                row--;
+            }
+            row++;
+
+            col++;
         }
-        return result;
+        return spiral;
     }
 }

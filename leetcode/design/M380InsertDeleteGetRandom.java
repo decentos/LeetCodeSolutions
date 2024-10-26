@@ -26,12 +26,11 @@ public class M380InsertDeleteGetRandom {
         if (!map.containsKey(val)) {
             return false;
         }
-        int replaceIndex = map.get(val);
-        int lastIndex = list.size() - 1;
-        int lastElement = list.get(lastIndex);
-        list.set(replaceIndex, lastElement);
-        list.remove(lastIndex);
-        map.replace(lastElement, replaceIndex);
+        int removeIndex = map.get(val);
+        int lastElement = list.getLast();
+        list.set(removeIndex, lastElement);
+        map.replace(lastElement, removeIndex);
+        list.removeLast();
         map.remove(val);
         return true;
     }

@@ -2,21 +2,28 @@ package tree.bst;
 
 import util.TreeNode;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 public class M230KSmallestElementBST {
 
     public int kthSmallest(TreeNode root, int k) {
-        List<Integer> list = new ArrayList<>();
-        dfs(root, list, k);
-        return list.get(k - 1);
-    }
+        Deque<TreeNode> stack = new ArrayDeque<>();
+        TreeNode node = root;
+        int index = 0;
 
-    private void dfs(TreeNode node, List<Integer> list, int k) {
-        if (node == null || list.size() == k) return;
-        dfs(node.left, list, k);
-        list.add(node.val);
-        dfs(node.right, list, k);
+        while (index < k) {
+            while (node != null) {
+                stack.push(node);
+                node = node.left;
+            }
+            node = stack.pop();
+            index++;
+            if (index == k) {
+                return node.val;
+            }
+            node = node.right;
+        }
+        return -1;
     }
 }

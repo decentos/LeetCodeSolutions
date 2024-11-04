@@ -27,9 +27,9 @@ public class M1265PrintListReverse {
             last = temp;
         }
     }
-}
 
-interface ImmutableListNode {
-    void printValue();
-    ImmutableListNode getNext();
+    private interface ImmutableListNode {
+        void printValue();
+        ImmutableListNode getNext();
+    }
 }

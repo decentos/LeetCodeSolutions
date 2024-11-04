@@ -1,4 +1,4 @@
-package backtracking;
+package uber;
 
 public class M79WordSearch {
 

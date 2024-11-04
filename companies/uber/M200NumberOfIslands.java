@@ -1,4 +1,4 @@
-package matrix;
+package uber;
 
 public class M200NumberOfIslands {
 

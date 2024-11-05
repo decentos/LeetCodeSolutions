@@ -1,8 +1,8 @@
-package matrix;
+package uber;
 
 import java.util.Arrays;
 
-public class M3025FindNumberRectangle {
+public class H3027FindNumberRectangle {
 
     public int numberOfPairs(int[][] points) {
         int n = points.length, pairs = 0;

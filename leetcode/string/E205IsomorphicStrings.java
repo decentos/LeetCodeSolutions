@@ -6,21 +6,22 @@ import java.util.Map;
 public class E205IsomorphicStrings {
 
     public boolean isIsomorphic(String s, String t) {
-        int n = s.length();
+        if (s.length() != t.length()) {
+            return false;
+        }
         Map<Character, Character> mapS = new HashMap<>();
         Map<Character, Character> mapT = new HashMap<>();
 
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < s.length(); i++) {
             char sChar = s.charAt(i);
             char tChar = t.charAt(i);
-            if (mapS.containsKey(sChar) && mapS.get(sChar) != tChar) {
+
+            if (!mapS.containsKey(sChar) && !mapT.containsKey(tChar)) {
+                mapS.put(sChar, tChar);
+                mapT.put(tChar, sChar);
+            } else if (!mapS.containsKey(sChar) || !mapT.containsKey(tChar) || mapS.get(sChar) != tChar || mapT.get(tChar) != sChar) {
                 return false;
             }
-            if (mapT.containsKey(tChar) && mapT.get(tChar) != sChar) {
-                return false;
-            }
-            mapS.put(sChar, tChar);
-            mapT.put(tChar, sChar);
         }
         return true;
     }

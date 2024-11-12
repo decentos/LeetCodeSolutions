@@ -1,28 +1,26 @@
 package stack;
 
-import java.util.Stack;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 public class E20ValidParentheses {
 
-    public static boolean isValid(String s) {
-        char[] chars = s.toCharArray();
-        Stack<Character> stack = new Stack<>();
-        for (char element : chars) {
-            if (element == '(' || element == '[' || element == '{') {
-                stack.push(element);
+    public boolean isValid(String s) {
+        Deque<Character> stack = new ArrayDeque<>();
+
+        for (char bracket : s.toCharArray()) {
+            if (bracket == '(' || bracket == '[' || bracket == '{') {
+                stack.push(bracket);
                 continue;
-            } else if (stack.empty()) {
+            } else if (stack.isEmpty()) {
                 return false;
             }
-            char top = stack.pop();
-            if (top == '(' && element != ')') {
-                return false;
-            } else if (top == '[' && element != ']') {
-                return false;
-            } else if (top == '{' && element != '}') {
+
+            char openBracket = stack.pop();
+            if (openBracket == '(' && bracket != ')' || openBracket == '[' && bracket != ']' || openBracket == '{' && bracket != '}') {
                 return false;
             }
         }
-        return stack.empty();
+        return stack.isEmpty();
     }
 }

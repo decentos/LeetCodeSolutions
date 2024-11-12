@@ -9,17 +9,20 @@ public class M56MergeIntervals {
 
     public int[][] merge(int[][] intervals) {
         Arrays.sort(intervals, Comparator.comparingInt(a -> a[0]));
+        int n = intervals.length;
         List<int[]> merged = new ArrayList<>();
-        merged.add(intervals[0]);
 
-        for (int i = 1; i < intervals.length; i++) {
-            int[] curr = merged.get(merged.size() - 1);
-            if (curr[1] >= intervals[i][0]) {
-                curr[1] = Math.max(curr[1], intervals[i][1]);
-            } else {
-                merged.add(intervals[i]);
+        for (int i = 0; i < n; i++) {
+            int startInterval = intervals[i][0];
+            int endInterval = intervals[i][1];
+
+            while (i + 1 < n && endInterval >= intervals[i + 1][0]) {
+                endInterval = Math.max(endInterval, intervals[i + 1][1]);
+                i++;
             }
+
+            merged.add(new int[]{startInterval, endInterval});
         }
-        return merged.toArray(new int[merged.size()][]);
+        return merged.toArray(new int[merged.size()][2]);
     }
 }

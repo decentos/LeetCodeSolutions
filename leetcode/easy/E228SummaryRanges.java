@@ -1,26 +1,29 @@
 package easy;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class E228SummaryRanges {
 
     public List<String> summaryRanges(int[] nums) {
-        if (nums.length == 0) return Collections.emptyList();
+        int n = nums.length;
+        List<String> ranges = new ArrayList<>();
 
-        List<String> result = new ArrayList<>();
-        int l = 0, r = 0;
+        for (int i = 0; i < n; i++) {
+            int startRange = nums[i];
+            int endRange = startRange;
 
-        while (r < nums.length) {
-            while (r < nums.length - 1 && nums[r] + 1 == nums[r + 1]) {
-                r++;
+            while (i + 1 < n && nums[i + 1] - endRange == 1) {
+                endRange++;
+                i++;
             }
-            String range = l == r ? String.valueOf(nums[l]) : nums[l] + "->" + nums[r];
-            result.add(range);
-            r++;
-            l = r;
+
+            if (startRange == endRange) {
+                ranges.add(String.valueOf(startRange));
+            } else {
+                ranges.add(startRange + "->" + endRange);
+            }
         }
-        return result;
+        return ranges;
     }
 }

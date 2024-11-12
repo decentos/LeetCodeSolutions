@@ -6,18 +6,19 @@ import java.util.Set;
 public class E202HappyNumber {
 
     public boolean isHappy(int n) {
-        Set<Integer> set = new HashSet<>();
-        while (n != 1) {
-            int sumOfSquare = 0;
+        Set<Integer> visited = new HashSet<>();
+
+        while (n != 1 && !visited.contains(n)) {
+            visited.add(n);
+            int sum = 0;
             while (n > 0) {
-                int lastDigit = n % 10;
-                sumOfSquare += lastDigit * lastDigit;
+                int digit = n % 10;
                 n /= 10;
+                sum += digit * digit;
             }
-            if (sumOfSquare < 0 || set.contains(sumOfSquare)) return false;
-            set.add(sumOfSquare);
-            n = sumOfSquare;
+            n = sum;
         }
-        return true;
+
+        return n == 1;
     }
 }

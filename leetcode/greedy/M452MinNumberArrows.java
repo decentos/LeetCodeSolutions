@@ -7,12 +7,12 @@ public class M452MinNumberArrows {
 
     public int findMinArrowShots(int[][] points) {
         Arrays.sort(points, Comparator.comparingInt(a -> a[1]));
-        int currEnd = points[0][1], arrows = 1;
+        int arrows = 1, high = points[0][1];
 
-        for (int i = 1; i < points.length; i++) {
-            if (points[i][0] > currEnd) {
-                currEnd = points[i][1];
+        for (int[] point : points) {
+            if (point[0] > high) {
                 arrows++;
+                high = point[1];
             }
         }
         return arrows;

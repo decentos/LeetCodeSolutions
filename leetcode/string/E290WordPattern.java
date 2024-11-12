@@ -5,22 +5,24 @@ import java.util.Map;
 
 public class E290WordPattern {
 
-    public static boolean wordPattern(String pattern, String s) {
-        String[] words = s.split(" ");
-        if (pattern.length() != words.length) return false;
+    public boolean wordPattern(String pattern, String s) {
+        Map<Character, String> letterToWord = new HashMap<>();
+        Map<String, Character> wordToLetter = new HashMap<>();
+        String[] words = s.split("\\s");
 
-        Map<String, Character> wordsMap = new HashMap<>();
-        Map<Character, String> patternMap = new HashMap<>();
+        if (words.length != pattern.length()) {
+            return false;
+        }
+
         for (int i = 0; i < words.length; i++) {
-            char c = pattern.charAt(i);
+            char letter = pattern.charAt(i);
             String word = words[i];
-            String wordFromMap = patternMap.get(c);
-            Character charFromMap = wordsMap.get(word);
 
-            if (wordFromMap == null && charFromMap == null) {
-                wordsMap.put(word, c);
-                patternMap.put(c, word);
-            } else if (wordFromMap == null || charFromMap == null || !wordFromMap.equals(word) || !charFromMap.equals(c)) {
+            if (!letterToWord.containsKey(letter) && !wordToLetter.containsKey(word)) {
+                letterToWord.put(letter, word);
+                wordToLetter.put(word, letter);
+            } else if (!letterToWord.containsKey(letter) || !wordToLetter.containsKey(word)
+                    || !letterToWord.get(letter).equals(word) || wordToLetter.get(word) != letter) {
                 return false;
             }
         }

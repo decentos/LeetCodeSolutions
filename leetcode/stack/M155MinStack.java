@@ -1,37 +1,36 @@
 package stack;
 
-import java.util.Objects;
-import java.util.Stack;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 public class M155MinStack {
-
-    private final Stack<Integer> stack;
-    private final Stack<Integer> minStack;;
+    private final Deque<Value> stack;
 
     public M155MinStack() {
-        stack = new Stack<>();
-        minStack = new Stack<>();
+        stack = new ArrayDeque<>();
     }
 
     public void push(int val) {
-        stack.push(val);
-        if (minStack.isEmpty() || minStack.peek() >= val) {
-            minStack.push(val);
+        if (stack.isEmpty()) {
+            stack.push(new Value(val, val));
+        } else {
+            int min = Math.min(val, stack.peek().currMin);
+            stack.push(new Value(val, min));
         }
     }
 
     public void pop() {
-        if (Objects.equals(minStack.peek(), stack.peek())) {
-            minStack.pop();
-        }
         stack.pop();
     }
 
     public int top() {
-        return stack.peek();
+        return stack.peek().value;
     }
 
     public int getMin() {
-        return minStack.peek();
+        return stack.peek().currMin;
+    }
+
+    private record Value(int value, int currMin) {
     }
 }

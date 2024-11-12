@@ -1,18 +1,19 @@
 package counting;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class E383RansomNote {
 
     public boolean canConstruct(String ransomNote, String magazine) {
-        Map<Character, Integer> map = new HashMap<>();
-        for (char c : magazine.toCharArray()) map.merge(c, 1, Integer::sum);
+        int[] freq = new int[26];
 
-        for (char c : ransomNote.toCharArray()) {
-            Integer count = map.get(c);
-            if (count == null || count == 0) return false;
-            map.replace(c, count - 1);
+        for (char letter : magazine.toCharArray()) {
+            freq[letter - 'a']++;
+        }
+
+        for (char letter : ransomNote.toCharArray()) {
+            if (freq[letter - 'a'] == 0) {
+                return false;
+            }
+            freq[letter - 'a']--;
         }
         return true;
     }

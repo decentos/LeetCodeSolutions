@@ -5,21 +5,20 @@ import util.ListNode;
 public class M19RemoveNodeFromEnd {
 
     public ListNode removeNthFromEnd(ListNode head, int n) {
-        ListNode curr = head;
+        ListNode dummy = new ListNode(0, head);
+        ListNode beforeRemove = dummy;
+        ListNode afterRemove = dummy;
+
         for (int i = 0; i < n; i++) {
-            curr = curr.next;
+            afterRemove = afterRemove.next;
         }
 
-        if (curr == null) {
-            return head.next;
+        while (afterRemove.next != null) {
+            beforeRemove = beforeRemove.next;
+            afterRemove = afterRemove.next;
         }
 
-        ListNode beforeRemoved = head;
-        while (curr.next != null) {
-            curr = curr.next;
-            beforeRemoved = beforeRemoved.next;
-        }
-        beforeRemoved.next = beforeRemoved.next.next;
-        return head;
+        beforeRemove.next = beforeRemove.next.next;
+        return dummy.next;
     }
 }

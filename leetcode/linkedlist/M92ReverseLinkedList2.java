@@ -5,16 +5,19 @@ import util.ListNode;
 public class M92ReverseLinkedList2 {
 
     public ListNode reverseBetween(ListNode head, int left, int right) {
-        ListNode curr = head;
         ListNode prev = null;
+        ListNode curr = head;
+
         while (left > 1) {
             prev = curr;
             curr = curr.next;
             left--;
             right--;
         }
-        ListNode before = prev;
-        ListNode after = curr;
+
+        ListNode beforeReverse = prev;
+        ListNode afterReverse = curr;
+
         while (right > 0) {
             ListNode next = curr.next;
             curr.next = prev;
@@ -23,12 +26,12 @@ public class M92ReverseLinkedList2 {
             right--;
         }
 
-        if (before != null) {
-            before.next = prev;
+        if (beforeReverse != null) {
+            beforeReverse.next = prev;
         } else {
             head = prev;
         }
-        after.next = curr;
+        afterReverse.next = curr;
         return head;
     }
 }

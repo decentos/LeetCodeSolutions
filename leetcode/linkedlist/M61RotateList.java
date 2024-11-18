@@ -4,59 +4,32 @@ import util.ListNode;
 
 public class M61RotateList {
 
-    public static ListNode rotateRight(ListNode head, int k) {
-        if (head == null || head.next == null || k == 0) return head;
-
-        ListNode iterator = head;
-        int length = 0;
-        while (iterator != null) {
-            iterator = iterator.next;
-            length++;
+    public ListNode rotateRight(ListNode head, int k) {
+        if (k == 0 || head == null || head.next == null) {
+            return head;
         }
 
-        k %= length;
-        if (k == 0) return head;
-        iterator = head;
-        ListNode newStart;
-        while (length - k > 0) {
-            iterator = iterator.next;
-            k++;
+        ListNode oldTail = head;
+        int nodeCount = 1;
+        while (oldTail.next != null) {
+            nodeCount++;
+            oldTail = oldTail.next;
         }
-        newStart = iterator;
+        k %= nodeCount;
 
-        ListNode newEnd = head;
-        while (newEnd.next != newStart) {
-            newEnd = newEnd.next;
+        if (k == 0) {
+            return head;
         }
-        newEnd.next = null;
 
-        while (iterator.next != null) {
-            iterator = iterator.next;
+        ListNode oldHead = head;
+        oldTail.next = oldHead;
+
+        for (int i = 0; i < nodeCount - k - 1; i++) {
+            oldHead = oldHead.next;
         }
-        iterator.next = head;
-        return newStart;
-    }
 
-    public ListNode rotateRight2(ListNode head, int k) {
-        if (head == null || head.next == null || k == 0) return head;
-
-        ListNode iterator = head;
-        int length = 0;
-        while (iterator.next != null) {
-            iterator = iterator.next;
-            length++;
-        }
-        length++;
-        k %= length;
-        if (k == 0) return head;
-
-        iterator.next = head;
-        while (length - k > 0) {
-            iterator = iterator.next;
-            k++;
-        }
-        ListNode newStart = iterator.next;
-        iterator.next = null;
-        return newStart;
+        ListNode newHead = oldHead.next;
+        oldHead.next = null;
+        return newHead;
     }
 }

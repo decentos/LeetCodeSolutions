@@ -6,78 +6,70 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class M138CopyListRandom {
-    private final Map<RandomNode, RandomNode> map = new HashMap<>();
 
     public RandomNode copyRandomList(RandomNode head) {
-        if (head == null) return null;
+        Map<RandomNode, RandomNode> originalToCopy = new HashMap<>();
+        RandomNode dummy = new RandomNode(-1);
+        RandomNode copyCurr = dummy;
+        RandomNode originalCurr = head;
 
-        RandomNode oldHead = head;
-        RandomNode newHead = new RandomNode(oldHead.val);
-        map.put(oldHead, newHead);
-        while (oldHead != null) {
-            newHead.random = getNode(oldHead.random);
-            newHead.next = getNode(oldHead.next);
-            oldHead = oldHead.next;
-            newHead = newHead.next;
+        while (originalCurr != null) {
+            copyCurr.next = getCopy(originalToCopy, originalCurr);
+            copyCurr.next.random = getCopy(originalToCopy, originalCurr.random);
+
+            copyCurr = copyCurr.next;
+            originalCurr = originalCurr.next;
         }
-        return map.get(head);
+        return dummy.next;
     }
 
-    private RandomNode getNode(RandomNode node) {
-        if (node == null) return null;
-        if (!map.containsKey(node)) {
-            map.put(node, new RandomNode(node.val));
+    private RandomNode getCopy(Map<RandomNode, RandomNode> originalToCopy, RandomNode original) {
+        if (original == null) {
+            return null;
+        } else if (originalToCopy.containsKey(original)) {
+            return originalToCopy.get(original);
+        } else {
+            RandomNode copy = new RandomNode(original.val);
+            originalToCopy.put(original, copy);
+            return copy;
         }
-        return map.get(node);
     }
+
+
+// ===============================================================================
 
     public RandomNode copyRandomList2(RandomNode head) {
-        RandomNode newHead = new RandomNode(0);
-        RandomNode curr = newHead;
-        RandomNode iterator = head;
-        while (iterator != null) {
-            RandomNode copy = new RandomNode(iterator.val);
-            curr.next = copy;
-            map.put(iterator, copy);
-            curr = curr.next;
-            iterator = iterator.next;
+        if (head == null) {
+            return null;
         }
-        curr = newHead;
-        iterator = head;
-        while (iterator != null) {
-            curr.next.random = map.get(iterator.random);
-            curr = curr.next;
-            iterator = iterator.next;
+
+        RandomNode original = head;
+        while (original != null) {
+            RandomNode copy = new RandomNode(original.val);
+            copy.next = original.next;
+            original.next = copy;
+            original = copy.next;
         }
-        return newHead.next;
-    }
 
-    public RandomNode copyRandomList3(RandomNode head) {
-        if (head == null) return null;
+        original = head;
+        while (original != null) {
+            if (original.random != null) {
+                original.next.random = original.random.next;
+            }
+            original = original.next.next;
+        }
 
-        RandomNode curr = head;
+        RandomNode originalHead = head;
+        RandomNode copyHead = head.next;
+        RandomNode curr = copyHead;
+
         while (curr != null) {
-            RandomNode copy = new RandomNode(curr.val);
-            copy.next = curr.next;
-            curr.next = copy;
-            curr = copy.next;
-        }
+            originalHead.next = originalHead.next.next;
+            curr.next = curr.next != null ? curr.next.next : null;
 
-        curr = head;
-        while (curr != null) {
-            curr.next.random = curr.random != null ? curr.random.next : null;
-            curr = curr.next.next;
+            originalHead = originalHead.next;
+            curr = curr.next;
         }
-
-        RandomNode oldNode = head;
-        RandomNode newNode = head.next;
-        RandomNode newHead = head.next;
-        while (oldNode != null) {
-            oldNode.next = oldNode.next.next;
-            newNode.next = newNode.next != null ? newNode.next.next : null;
-            oldNode = oldNode.next;
-            newNode = newNode.next;
-        }
-        return newHead;
+        return copyHead;
     }
 }

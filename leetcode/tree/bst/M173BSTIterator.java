@@ -2,48 +2,26 @@ package tree.bst;
 
 import util.TreeNode;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Stack;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 public class M173BSTIterator {
 
     private static class BSTIterator {
-        private final List<Integer> list;
-        private int index;
+        private final Deque<TreeNode> stack;
 
         public BSTIterator(TreeNode root) {
-            list = new ArrayList<>();
-            traverse(root);
-        }
-
-        public int next() {
-            return list.get(index++);
-        }
-
-        public boolean hasNext() {
-            return index < list.size();
-        }
-
-        private void traverse(TreeNode node) {
-            if (node == null) return;
-            traverse(node.left);
-            list.add(node.val);
-            traverse(node.right);
-        }
-    }
-
-    private static class BSTIterator2 {
-        private final Stack<TreeNode> stack;
-
-        public BSTIterator2(TreeNode root) {
-            stack = new Stack<>();
-            traverse(root);
+            stack = new ArrayDeque<>();
+            leftmost(root);
         }
 
         public int next() {
             TreeNode next = stack.pop();
-            traverse(next.right);
+
+            if (next.right != null) {
+                leftmost(next.right);
+            }
+
             return next.val;
         }
 
@@ -51,7 +29,7 @@ public class M173BSTIterator {
             return !stack.isEmpty();
         }
 
-        private void traverse(TreeNode node) {
+        private void leftmost(TreeNode node) {
             while (node != null) {
                 stack.push(node);
                 node = node.left;

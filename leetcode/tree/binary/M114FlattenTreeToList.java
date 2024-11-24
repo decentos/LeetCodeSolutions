@@ -3,31 +3,41 @@ package tree.binary;
 import util.TreeNode;
 
 public class M114FlattenTreeToList {
-    private TreeNode last = null;
+    private TreeNode curr = null;
 
     public void flatten(TreeNode root) {
-        if (root == null) return;
+        if (root == null) {
+            return;
+        }
         flatten(root.right);
         flatten(root.left);
-        root.right = last;
+        root.right = curr;
         root.left = null;
-        last = root;
+        curr = root;
     }
 
+// ===============================================================================
+
     public void flatten2(TreeNode root) {
-        if (root == null) return;
+        if (root == null) {
+            return;
+        }
 
-        TreeNode node = root;
-        while (node != null) {
-            if (node.left != null) {
-                TreeNode rightmost = node.left;
-                while (rightmost.right != null) rightmost = rightmost.right;
+        TreeNode curr = root;
 
-                rightmost.right = node.right;
-                node.right = node.left;
-                node.left = null;
+        while (curr != null) {
+            if (curr.left != null) {
+                TreeNode rightmost = curr.left;
+
+                while (rightmost.right != null) {
+                    rightmost = rightmost.right;
+                }
+
+                rightmost.right = curr.right;
+                curr.right = curr.left;
+                curr.left = null;
             }
-            node = node.right;
+            curr = curr.right;
         }
     }
 }

@@ -6,27 +6,31 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class M105ConstructTreePreorderInorder {
-    private final Map<Integer, Integer> map = new HashMap<>();
-    private int preIndex = 0;
+    private int preorderIndex;
 
     public TreeNode buildTree(int[] preorder, int[] inorder) {
-        for (int i = 0; i < inorder.length; i++) {
-            map.put(inorder[i], i);
+        int n = inorder.length;
+        Map<Integer, Integer> inorderMap = new HashMap<>();
+
+        for (int i = 0 ; i < n; i++) {
+            inorderMap.put(inorder[i], i);
         }
-        return helper(preorder, 0, preorder.length - 1);
+
+        return arrayToTree(inorderMap, preorder, 0, n - 1);
     }
 
-    private TreeNode helper(int[] preorder, int left, int right) {
-        if (left > right) return null;
+    private TreeNode arrayToTree(Map<Integer, Integer> inorderMap, int[] preorder, int left, int right) {
+        if (left > right) {
+            return null;
+        }
 
-        int val = preorder[preIndex];
-        preIndex++;
-        TreeNode node = new TreeNode(val);
+        int val = preorder[preorderIndex++];
+        TreeNode root = new TreeNode(val);
+        int inorderIndex = inorderMap.get(val);
 
-        int inIndex = map.get(val);
-        node.left = helper(preorder, left, inIndex - 1);
-        node.right = helper(preorder, inIndex + 1, right);
+        root.left = arrayToTree(inorderMap, preorder, left, inorderIndex - 1);
+        root.right = arrayToTree(inorderMap, preorder, inorderIndex + 1, right);
 
-        return node;
+        return root;
     }
 }

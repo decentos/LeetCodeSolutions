@@ -6,28 +6,32 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class M106ConstructTreeInorderPostorder {
-    private final Map<Integer, Integer> map = new HashMap<>();
-    private int index;
+    private int postorderIndex;
 
     public TreeNode buildTree(int[] inorder, int[] postorder) {
-        index = postorder.length - 1;
-        for (int i = 0; i < inorder.length; i++) {
-            map.put(inorder[i], i);
+        int n = postorder.length;
+        postorderIndex = n - 1;
+        Map<Integer, Integer> inorderMap = new HashMap<>();
+
+        for (int i = 0; i < n; i++) {
+            inorderMap.put(inorder[i], i);
         }
-        return helper(postorder, 0, postorder.length - 1);
+
+        return arrayToTree(inorderMap, postorder, 0, n - 1);
     }
 
-    private TreeNode helper(int[] postorder, int left, int right) {
-        if (left > right) return null;
+    private TreeNode arrayToTree(Map<Integer, Integer> inorderMap, int[] postorder, int left, int right) {
+        if (left > right) {
+            return null;
+        }
 
-        int val = postorder[index];
-        index--;
-        TreeNode node = new TreeNode(val);
+        int val = postorder[postorderIndex--];
+        TreeNode root = new TreeNode(val);
+        int inorderIndex = inorderMap.get(val);
 
-        int inIndex = map.get(val);
-        node.right = helper(postorder, inIndex + 1, right);
-        node.left = helper(postorder, left, inIndex - 1);
+        root.right = arrayToTree(inorderMap, postorder, inorderIndex + 1, right);
+        root.left = arrayToTree(inorderMap, postorder, left, inorderIndex - 1);
 
-        return node;
+        return root;
     }
 }

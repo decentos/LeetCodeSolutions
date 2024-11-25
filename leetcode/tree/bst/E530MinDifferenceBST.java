@@ -2,25 +2,55 @@ package tree.bst;
 
 import util.TreeNode;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
+
 public class E530MinDifferenceBST {
-    private int min = Integer.MAX_VALUE;
-    private TreeNode prev = null;
+    private int minDiff = Integer.MAX_VALUE;
+    private TreeNode prev;
 
     public int getMinimumDifference(TreeNode root) {
-        traverse(root);
-        return min;
+        dfs(root);
+        return minDiff;
     }
 
-    private void traverse(TreeNode node) {
-        if (node == null) return;
-
-        traverse(node.left);
+    private void dfs(TreeNode node) {
+        if (node == null) {
+            return;
+        }
+        dfs(node.left);
 
         if (prev != null) {
-            min = Math.min(min, node.val - prev.val);
+            minDiff = Math.min(minDiff, node.val - prev.val);
         }
         prev = node;
 
-        traverse(node.right);
+        dfs(node.right);
+    }
+
+// ===============================================================================
+
+    public int getMinimumDifference2(TreeNode root) {
+        Deque<TreeNode> stack = new ArrayDeque<>();
+        TreeNode prev = null;
+        TreeNode curr = root;
+        int minDiff = Integer.MAX_VALUE;
+
+        while (!stack.isEmpty() || curr != null) {
+            while (curr != null) {
+                stack.push(curr);
+                curr = curr.left;
+            }
+
+            curr = stack.pop();
+
+            if (prev != null) {
+                minDiff = Math.min(minDiff, curr.val - prev.val);
+            }
+
+            prev = curr;
+            curr = curr.right;
+        }
+        return minDiff;
     }
 }

@@ -2,62 +2,75 @@ package tree.binary;
 
 import util.TreeNode;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 public class M103TreeZigzagTraversal {
 
     public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
-        if (root == null) return Collections.emptyList();
+        if (root == null) {
+            return Collections.emptyList();
+        }
 
-        List<List<Integer>> result = new ArrayList<>();
-        Queue<TreeNode> queue = new LinkedList<>();
+        List<List<Integer>> levels = new ArrayList<>();
+        Deque<TreeNode> queue = new ArrayDeque<>();
         queue.offer(root);
+        boolean isEven = true;
 
         while (!queue.isEmpty()) {
-            List<Integer> currValues = new ArrayList<>();
-            List<TreeNode> currNodes = new ArrayList<>();
-            while (!queue.isEmpty()) {
-                TreeNode next = queue.poll();
-                if (next != null) {
-                    currValues.add(next.val);
-                    currNodes.add(next);
+            int size = queue.size();
+            List<Integer> level = new ArrayList<>();
+
+            for (int i = 0; i < size; i++) {
+                TreeNode curr = queue.poll();
+
+                if (isEven) {
+                    level.add(curr.val);
+                } else {
+                    level.addFirst(curr.val);
+                }
+
+                if (curr.left != null) {
+                    queue.offer(curr.left);
+                }
+                if (curr.right != null) {
+                    queue.offer(curr.right);
                 }
             }
-            if (result.size() % 2 == 1) Collections.reverse(currValues);
-            if (currValues.size() > 0) result.add(currValues);
-            currNodes.forEach(node -> {
-                queue.offer(node.left);
-                queue.offer(node.right);
-            });
+            isEven = !isEven;
+            levels.add(level);
         }
-        return result;
+        return levels;
     }
 
-    public List<List<Integer>> zigzagLevelOrder2(TreeNode root) {
-        if (root == null) return Collections.emptyList();
+// ===============================================================================
 
-        List<List<Integer>> result = new ArrayList<>();
-        dfs(root, result, 0);
-        return result;
-    }
-
-    private void dfs(TreeNode node, List<List<Integer>> result, int level) {
-        if (node == null) return;
-
-        if (result.size() <= level) {
-            List<Integer> currLevel = new LinkedList<>();
-            result.add(currLevel);
+    public List<List<Integer>> zigzagLevelOrderDFS(TreeNode root) {
+        if (root == null) {
+            return Collections.emptyList();
         }
 
-        List<Integer> currLevel = result.get(level);
-        if (level % 2 == 0) currLevel.add(node.val);
-        else currLevel.add(0, node.val);
+        List<List<Integer>> levels = new ArrayList<>();
+        dfs(root, levels, 0);
+        return levels;
+    }
 
-        dfs(node.left, result, level + 1);
-        dfs(node.right, result, level + 1);
+    private void dfs(TreeNode node, List<List<Integer>> levels, int level) {
+        if (node == null) {
+            return;
+        }
+
+        if (levels.size() <= level) {
+            levels.add(new ArrayList<>());
+        }
+
+        List<Integer> currLevel = levels.get(level);
+        if (level % 2 == 0) {
+            currLevel.add(node.val);
+        } else {
+            currLevel.addFirst(node.val);
+        }
+
+        dfs(node.left, levels, level + 1);
+        dfs(node.right, levels, level + 1);
     }
 }

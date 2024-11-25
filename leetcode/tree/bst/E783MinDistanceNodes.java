@@ -2,27 +2,56 @@ package tree.bst;
 
 import util.TreeNode;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 public class E783MinDistanceNodes {
 
-    public int minDiffInBST(TreeNode root) {
-        List<Integer> list = new ArrayList<>();
-        dfs(root, list);
+    private int minDiff = Integer.MAX_VALUE;
+    private TreeNode prev;
 
-        int min = Integer.MAX_VALUE;
-        for (int i = 1; i < list.size(); i++) {
-            min = Math.min(min, list.get(i) - list.get(i - 1));
-        }
-        return min;
+    public int minDiffInBST(TreeNode root) {
+        dfs(root);
+        return minDiff;
     }
 
-    private void dfs(TreeNode node, List<Integer> list) {
-        if (node == null) return;
+    private void dfs(TreeNode node) {
+        if (node == null) {
+            return;
+        }
+        dfs(node.left);
 
-        dfs(node.left, list);
-        list.add(node.val);
-        dfs(node.right, list);
+        if (prev != null) {
+            minDiff = Math.min(minDiff, node.val - prev.val);
+        }
+        prev = node;
+
+        dfs(node.right);
+    }
+
+// ===============================================================================
+
+    public int minDiffInBST2(TreeNode root) {
+        Deque<TreeNode> stack = new ArrayDeque<>();
+        TreeNode prev = null;
+        TreeNode curr = root;
+        int minDiff = Integer.MAX_VALUE;
+
+        while (!stack.isEmpty() || curr != null) {
+            while (curr != null) {
+                stack.push(curr);
+                curr = curr.left;
+            }
+
+            curr = stack.pop();
+
+            if (prev != null) {
+                minDiff = Math.min(minDiff, curr.val - prev.val);
+            }
+
+            prev = curr;
+            curr = curr.right;
+        }
+        return minDiff;
     }
 }

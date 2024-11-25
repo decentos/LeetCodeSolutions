@@ -9,21 +9,21 @@ public class M230KSmallestElementBST {
 
     public int kthSmallest(TreeNode root, int k) {
         Deque<TreeNode> stack = new ArrayDeque<>();
-        TreeNode node = root;
+        TreeNode curr = root;
 
         while (k > 0) {
-            k--;
-            while (node != null) {
-                stack.push(node);
-                node = node.left;
+            while (curr != null) {
+                stack.push(curr);
+                curr = curr.left;
             }
-            node = stack.pop();
+
+            curr = stack.pop();
+            k--;
 
             if (k == 0) {
-                return node.val;
+                return curr.val;
             }
-
-            node = node.right;
+            curr = curr.right;
         }
         return -1;
     }

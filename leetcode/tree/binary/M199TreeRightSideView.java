@@ -11,7 +11,7 @@ public class M199TreeRightSideView {
             return Collections.emptyList();
         }
 
-        List<Integer> right = new ArrayList<>();
+        List<Integer> rights = new ArrayList<>();
         Deque<TreeNode> queue = new ArrayDeque<>();
         queue.offer(root);
 
@@ -20,9 +20,11 @@ public class M199TreeRightSideView {
 
             for (int i = 0; i < size; i++) {
                 TreeNode curr = queue.poll();
+
                 if (i == size - 1) {
-                    right.add(curr.val);
+                    rights.add(curr.val);
                 }
+
                 if (curr.left != null) {
                     queue.offer(curr.left);
                 }
@@ -31,6 +33,6 @@ public class M199TreeRightSideView {
                 }
             }
         }
-        return right;
+        return rights;
     }
 }

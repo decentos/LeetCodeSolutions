@@ -32,9 +32,10 @@ public class E530MinDifferenceBST {
 
     public int getMinimumDifference2(TreeNode root) {
         Deque<TreeNode> stack = new ArrayDeque<>();
+        int minDiff = Integer.MAX_VALUE;
+
         TreeNode prev = null;
         TreeNode curr = root;
-        int minDiff = Integer.MAX_VALUE;
 
         while (!stack.isEmpty() || curr != null) {
             while (curr != null) {
@@ -43,11 +44,9 @@ public class E530MinDifferenceBST {
             }
 
             curr = stack.pop();
-
             if (prev != null) {
                 minDiff = Math.min(minDiff, curr.val - prev.val);
             }
-
             prev = curr;
             curr = curr.right;
         }

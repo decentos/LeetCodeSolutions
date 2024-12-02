@@ -11,20 +11,21 @@ public class M133CloneGraph {
         if (node == null) {
             return null;
         }
-        return copy(node, new HashMap<>());
+        Map<Integer, NTreeNode> copies = new HashMap<>();
+        return clone(node, copies);
     }
 
-    private NTreeNode copy(NTreeNode node, Map<Integer, NTreeNode> visited) {
-        if (visited.containsKey(node.val)) {
-            return visited.get(node.val);
+    private NTreeNode clone(NTreeNode node, Map<Integer, NTreeNode> copies) {
+        if (copies.containsKey(node.val)) {
+            return copies.get(node.val);
         }
 
         NTreeNode copy = new NTreeNode(node.val);
-        visited.put(node.val, copy);
+        copies.put(node.val, copy);
 
         for (NTreeNode neighbor : node.children) {
-            NTreeNode copyNeighbor = copy(neighbor, visited);
-            copy.children.add(copyNeighbor);
+            NTreeNode neighborCopy = clone(neighbor, copies);
+            copy.children.add(neighborCopy);
         }
         return copy;
     }

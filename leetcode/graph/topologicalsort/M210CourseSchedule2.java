@@ -6,10 +6,10 @@ public class M210CourseSchedule2 {
 
     public int[] findOrder(int numCourses, int[][] prerequisites) {
         int[] order = new int[numCourses];
-        int insertIndex = 0;
-        Deque<Integer> queue = new ArrayDeque<>();
         int[] inDegree = new int[numCourses];
         Map<Integer, List<Integer>> outDegree = new HashMap<>();
+        Deque<Integer> queue = new ArrayDeque<>();
+        int finishedCourses = 0;
 
         for (int[] prerequisite : prerequisites) {
             inDegree[prerequisite[0]]++;
@@ -24,7 +24,7 @@ public class M210CourseSchedule2 {
 
         while (!queue.isEmpty()) {
             int curr = queue.poll();
-            order[insertIndex++] = curr;
+            order[finishedCourses++] = curr;
 
             if (outDegree.containsKey(curr)) {
                 List<Integer> neighbors = outDegree.get(curr);
@@ -37,6 +37,6 @@ public class M210CourseSchedule2 {
                 }
             }
         }
-        return insertIndex == numCourses ? order : new int[0];
+        return finishedCourses == numCourses ? order : new int[0];
     }
 }

@@ -5,7 +5,7 @@ import java.util.*;
 public class M399EvaluateDivision {
 
     public double[] calcEquation(List<List<String>> equations, double[] values, List<List<String>> queries) {
-        double[] result = new double[queries.size()];
+        double[] results = new double[queries.size()];
         UnionFind graph = new UnionFind(equations.size() * 2);
         Map<String, Integer> toIndexMap = new HashMap<>();
         int nodeIndex = 0;
@@ -31,10 +31,11 @@ public class M399EvaluateDivision {
             String divider = queries.get(i).get(1);
             int divisorIndex = toIndexMap.getOrDefault(divisor, -1);
             int dividerIndex = toIndexMap.getOrDefault(divider, -1);
+
             if (divisorIndex == -1 || dividerIndex == -1 || !graph.isConnected(divisorIndex, dividerIndex)) {
-                result[i] = -1.0;
+                results[i] = -1.0;
             } else if (divisorIndex == dividerIndex) {
-                result[i] = 1.0;
+                results[i] = 1.0;
             } else {
                 Deque<Calculation> queue = new ArrayDeque<>();
                 queue.offer(new Calculation(divisorIndex, 1.0));
@@ -46,7 +47,7 @@ public class M399EvaluateDivision {
                     Calculation curr = queue.poll();
 
                     if (curr.node == dividerIndex) {
-                        result[i] = curr.amount;
+                        results[i] = curr.value;
                         break;
                     }
 
@@ -54,13 +55,13 @@ public class M399EvaluateDivision {
                     for (Calculation neighbor : neighbors) {
                         if (!visited[neighbor.node]) {
                             visited[neighbor.node] = true;
-                            queue.offer(new Calculation(neighbor.node, curr.amount * neighbor.amount));
+                            queue.offer(new Calculation(neighbor.node, curr.value * neighbor.value));
                         }
                     }
                 }
             }
         }
-        return result;
+        return results;
     }
 
     private static class UnionFind {
@@ -105,5 +106,5 @@ public class M399EvaluateDivision {
         }
     }
 
-    private record Calculation(int node, double amount) {}
+    private record Calculation(int node, double value) {}
 }

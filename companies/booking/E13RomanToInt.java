@@ -1,4 +1,4 @@
-package easy;
+package booking;
 
 import java.util.Map;
 

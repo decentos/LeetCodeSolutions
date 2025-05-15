@@ -1,4 +1,4 @@
-package medium;
+package booking;
 
 import java.util.Map;
 import java.util.TreeMap;

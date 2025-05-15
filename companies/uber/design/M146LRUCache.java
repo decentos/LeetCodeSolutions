@@ -16,21 +16,21 @@ public class M146LRUCache {
         }
 
         public int get(int key) {
-            if (cache.containsKey(key)) {
-                int value = cache.get(key);
-                cache.remove(key);
-                cache.put(key, value);
-                return value;
+            if (!cache.containsKey(key)) {
+                return -1;
             }
-            return -1;
+            int value = cache.get(key);
+            cache.remove(key);
+            cache.put(key, value);
+            return value;
         }
 
         public void put(int key, int value) {
             if (cache.containsKey(key)) {
                 cache.remove(key);
             } else if (cache.size() == capacity) {
-                int oldest = cache.keySet().iterator().next();
-                cache.remove(oldest);
+                int eldest = cache.keySet().iterator().next();
+                cache.remove(eldest);
             }
             cache.put(key, value);
         }

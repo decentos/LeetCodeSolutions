@@ -1,4 +1,4 @@
-package heap;
+package booking;
 
 import java.util.*;
 

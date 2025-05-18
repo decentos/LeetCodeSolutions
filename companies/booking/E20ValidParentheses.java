@@ -1,4 +1,4 @@
-package stack;
+package booking;
 
 import java.util.ArrayDeque;
 import java.util.Deque;

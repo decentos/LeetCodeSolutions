@@ -1,4 +1,4 @@
-package greedy;
+package booking;
 
 import java.util.*;
 

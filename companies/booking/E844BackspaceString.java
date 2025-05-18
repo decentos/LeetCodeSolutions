@@ -1,4 +1,4 @@
-package string;
+package booking;
 
 public class E844BackspaceString {
 

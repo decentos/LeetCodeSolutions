@@ -1,4 +1,4 @@
-package heap;
+package uber.algo;
 
 import java.util.*;
 
@@ -49,7 +49,7 @@ public class M347TopFrequentElements {
         int insertIndex = 0;
         for (int i = buckets.length - 1; i >= 0; i--) {
             List<Integer> bucket = buckets[i];
-
+            
             if (bucket == null) {
                 continue;
             }

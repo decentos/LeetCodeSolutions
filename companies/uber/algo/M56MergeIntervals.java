@@ -1,4 +1,4 @@
-package medium;
+package uber.algo;
 
 import java.util.ArrayList;
 import java.util.Arrays;

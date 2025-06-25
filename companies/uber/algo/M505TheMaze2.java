@@ -1,4 +1,4 @@
-package graph.dijkstra;
+package uber.algo;
 
 import java.util.Comparator;
 import java.util.PriorityQueue;

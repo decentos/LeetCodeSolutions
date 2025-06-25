@@ -1,4 +1,4 @@
-package graph.unionfind;
+package uber.algo;
 
 import java.util.ArrayList;
 import java.util.List;

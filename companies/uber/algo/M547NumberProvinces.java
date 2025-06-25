@@ -1,4 +1,4 @@
-package graph.unionfind;
+package uber.algo;
 
 public class M547NumberProvinces {
 

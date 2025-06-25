@@ -1,4 +1,4 @@
-package matrix;
+package uber.algo;
 
 import java.util.ArrayDeque;
 import java.util.Deque;

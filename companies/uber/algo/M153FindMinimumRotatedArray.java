@@ -1,4 +1,4 @@
-package binarysearch;
+package uber.algo;
 
 public class M153FindMinimumRotatedArray {
 

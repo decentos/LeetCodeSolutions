@@ -1,4 +1,4 @@
-package string;
+package uber.algo;
 
 public class M5LongestPalindromicSubstring {
 

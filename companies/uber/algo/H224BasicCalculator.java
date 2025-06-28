@@ -1,4 +1,4 @@
-package uber.design;
+package uber.algo;
 
 public class H224BasicCalculator {
 

@@ -23,22 +23,22 @@ public class H269AlienDictionary {
         for (int i = 1; i < words.length; i++) {
             String prev = words[i - 1];
             String curr = words[i];
-            int nPrev = prev.length(), nCurr = curr.length(), index = 0;
+            int prevLen = prev.length(), currLen = curr.length(), index = 0;
 
-            while (index < nPrev && index < nCurr && prev.charAt(index) == curr.charAt(index)) {
+            while (index < prevLen && index < currLen && prev.charAt(index) == curr.charAt(index)) {
                 index++;
             }
 
-            if (nPrev > nCurr && index == nCurr) {
+            if (prevLen > currLen && index == currLen) {
                 return "";
-            } else if (index == nPrev) {
+            } else if (index == prevLen) {
                 continue;
             }
 
-            int prevIndex = prev.charAt(index) - 'a';
-            int currIndex = curr.charAt(index) - 'a';
-            inDegree[currIndex]++;
-            adj.computeIfAbsent(prevIndex, val -> new ArrayList<>()).add(currIndex);
+            int prevLetter = prev.charAt(index) - 'a';
+            int currLetter = curr.charAt(index) - 'a';
+            inDegree[currLetter]++;
+            adj.computeIfAbsent(prevLetter, val -> new ArrayList<>()).add(currLetter);
         }
 
         Deque<Integer> queue = new ArrayDeque<>();
@@ -49,12 +49,12 @@ public class H269AlienDictionary {
         }
 
         while (!queue.isEmpty()) {
-            int currIndex = queue.poll();
-            char currChar = (char) (currIndex + 'a');
-            order.append(currChar);
+            int curr = queue.poll();
+            char letter = (char) (curr + 'a');
+            order.append(letter);
 
-            if (adj.containsKey(currIndex)) {
-                List<Integer> neighbors = adj.get(currIndex);
+            if (adj.containsKey(curr)) {
+                List<Integer> neighbors = adj.get(curr);
                 for (int neighbor : neighbors) {
                     inDegree[neighbor]--;
                     if (inDegree[neighbor] == 0) {

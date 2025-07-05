@@ -1,4 +1,4 @@
-package matrix;
+package uber.algo;
 
 import java.util.HashMap;
 import java.util.HashSet;

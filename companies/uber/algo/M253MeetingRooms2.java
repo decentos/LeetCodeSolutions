@@ -1,4 +1,4 @@
-package heap;
+package uber.algo;
 
 import java.util.Arrays;
 import java.util.Comparator;

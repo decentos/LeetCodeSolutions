@@ -1,4 +1,4 @@
-package medium;
+package design;
 
 import java.util.Random;
 
@@ -23,9 +23,9 @@ public class M384ShuffleArray {
         return shuffle;
     }
 
-    private void swap(int[] shuffle, int index, int nextRandom) {
-        int temp = shuffle[index];
-        shuffle[index] = shuffle[nextRandom];
-        shuffle[nextRandom] = temp;
+    private void swap(int[] shuffle, int from, int to) {
+        int temp = shuffle[from];
+        shuffle[from] = shuffle[to];
+        shuffle[to] = temp;
     }
 }

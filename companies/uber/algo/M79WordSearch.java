@@ -26,11 +26,13 @@ public class M79WordSearch {
         }
 
         visited[row][col] = true;
-        boolean up = backtrack(board, word, visited, row + 1, col, index + 1);
-        boolean down = backtrack(board, word, visited, row - 1, col, index + 1);
-        boolean left = backtrack(board, word, visited, row, col - 1, index + 1);
-        boolean right = backtrack(board, word, visited, row, col + 1, index + 1);
+
+        boolean isExist = backtrack(board, word, visited, row + 1, col, index + 1)
+                || backtrack(board, word, visited, row - 1, col, index + 1)
+                || backtrack(board, word, visited, row, col + 1, index + 1)
+                || backtrack(board, word, visited, row, col - 1, index + 1);
+
         visited[row][col] = false;
-        return up || down || left || right;
+        return isExist;
     }
 }

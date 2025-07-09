@@ -27,9 +27,9 @@ public class M1438LongestAbsoluteDiff {
 // ===============================================================================
 
     public int longestSubarray2(int[] nums, int limit) {
+        int left = 0, max = 0;
         Deque<Integer> minQueue = new ArrayDeque<>();
         Deque<Integer> maxQueue = new ArrayDeque<>();
-        int left = 0, max = 0;
 
         for (int right = 0; right < nums.length; right++) {
             while (!minQueue.isEmpty() && minQueue.peekLast() > nums[right]) {
@@ -46,9 +46,11 @@ public class M1438LongestAbsoluteDiff {
                 if (maxQueue.peek() == nums[left]) {
                     maxQueue.poll();
                 }
+
                 if (minQueue.peek() == nums[left]) {
                     minQueue.poll();
                 }
+
                 left++;
             }
             max = Math.max(max, right - left + 1);

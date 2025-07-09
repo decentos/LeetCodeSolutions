@@ -7,7 +7,7 @@ public class H212WordSearch2 {
 
     public List<String> findWords(char[][] board, String[] words) {
         int m = board.length, n = board[0].length;
-        boolean[][] visited  = new boolean[m][n];
+        boolean[][] visited = new boolean[m][n];
         List<String> exists = new ArrayList<>();
         TrieNode root = buildTrie(words);
 
@@ -37,7 +37,7 @@ public class H212WordSearch2 {
     }
 
     private void searchWords(List<String> exists, TrieNode node, char[][] board, boolean[][] visited, int row, int col) {
-        if (row < 0 || row  >= board.length || col < 0 || col >= board[0].length || visited[row][col] || node.children[board[row][col] - 'a'] == null) {
+        if (row < 0 || row >= board.length || col < 0 || col >= board[0].length || visited[row][col] || node.children[board[row][col] - 'a'] == null) {
             return;
         }
         visited[row][col] = true;
